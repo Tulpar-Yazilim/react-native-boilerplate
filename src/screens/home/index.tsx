@@ -1,10 +1,11 @@
+import {AppText} from '@/components/common';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 
 export function HomeScreen() {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <AppText>hello</AppText>
     </View>
   );
 }

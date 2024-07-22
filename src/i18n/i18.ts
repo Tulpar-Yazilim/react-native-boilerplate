@@ -1,11 +1,8 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 
-import tr from './languages/tr';
 import en from './languages/en';
-import de from './languages/de';
-import es from './languages/es';
-import fr from './languages/fr';
+import tr from './languages/tr';
 
 const initLocale = async (langauge: string = 'tr') => {
   const resources = {
@@ -14,15 +11,6 @@ const initLocale = async (langauge: string = 'tr') => {
     },
     en: {
       translation: en,
-    },
-    de: {
-      translation: de,
-    },
-    es: {
-      translation: es,
-    },
-    fr: {
-      translation: fr,
     },
   };
 
