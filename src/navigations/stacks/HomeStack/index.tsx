@@ -11,7 +11,13 @@ const Stack = createNativeStackNavigator<HomeStackNavigationProps>();
 const HomeStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={routes.HOME_SCREEN} component={HomeScreen} />
+      <Stack.Screen
+        name={routes.HOME_SCREEN}
+        component={HomeScreen}
+        options={{
+          title: 'Home Screen',
+        }}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,18 +1,60 @@
-import {NavigationContainer} from '@react-navigation/native';
-import * as React from 'react';
-import {StatusBar, useColorScheme} from 'react-native';
-import {initLocale} from './i18n';
-import HomeStack from './navigations/stacks/HomeStack';
+import {linking} from '@/config';
+import {useAppDispatch, useAppSelector} from '@/hooks';
+import {initLocale} from '@/i18n';
+import {persistor, settingsRedux, store} from '@/store';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {Keyboard, StatusBar, useColorScheme} from 'react-native';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import {RootStack} from './navigations/stacks';
 
-export function App() {
+const MainContainer = () => {
+  const dispatch = useAppDispatch();
   const isDarkMode = useColorScheme() === 'dark';
 
-  initLocale('tr');
+  const language = useAppSelector(state => state.settings.language);
+  const theme = useAppSelector(state => state.settings.theme);
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', () =>
+      dispatch(settingsRedux.changeBottomTabDisplay(false)),
+    );
+    Keyboard.addListener('keyboardDidHide', () =>
+      dispatch(settingsRedux.changeBottomTabDisplay(true)),
+    );
+    return () => {
+      Keyboard.removeAllListeners('keyboardDidShow');
+      Keyboard.removeAllListeners('keyboardDidHide');
+    };
+  }, []);
+
+  useEffect(() => {
+    initLocale(language);
+  }, [language]);
 
   return (
-    <NavigationContainer>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <HomeStack />
-    </NavigationContainer>
+    <>
+      <NavigationContainer
+        linking={linking}
+        theme={isDarkMode ? DarkTheme : DefaultTheme}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <RootStack />
+      </NavigationContainer>
+    </>
+  );
+};
+
+export function App() {
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <MainContainer />
+      </PersistGate>
+    </Provider>
   );
 }
