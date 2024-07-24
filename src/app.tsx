@@ -2,11 +2,7 @@ import {linking} from '@/config';
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {initLocale} from '@/i18n';
 import {persistor, settingsRedux, store} from '@/store';
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from '@react-navigation/native';
+import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {Keyboard, StatusBar, useColorScheme} from 'react-native';
 import {Provider} from 'react-redux';
@@ -18,15 +14,10 @@ const MainContainer = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const language = useAppSelector(state => state.settings.language);
-  const theme = useAppSelector(state => state.settings.theme);
 
   useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', () =>
-      dispatch(settingsRedux.changeBottomTabDisplay(false)),
-    );
-    Keyboard.addListener('keyboardDidHide', () =>
-      dispatch(settingsRedux.changeBottomTabDisplay(true)),
-    );
+    Keyboard.addListener('keyboardDidShow', () => dispatch(settingsRedux.changeBottomTabDisplay(false)));
+    Keyboard.addListener('keyboardDidHide', () => dispatch(settingsRedux.changeBottomTabDisplay(true)));
     return () => {
       Keyboard.removeAllListeners('keyboardDidShow');
       Keyboard.removeAllListeners('keyboardDidHide');
@@ -38,14 +29,10 @@ const MainContainer = () => {
   }, [language]);
 
   return (
-    <>
-      <NavigationContainer
-        linking={linking}
-        theme={isDarkMode ? DarkTheme : DefaultTheme}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <RootStack />
-      </NavigationContainer>
-    </>
+    <NavigationContainer linking={linking} theme={isDarkMode ? DarkTheme : DefaultTheme}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <RootStack />
+    </NavigationContainer>
   );
 };
 

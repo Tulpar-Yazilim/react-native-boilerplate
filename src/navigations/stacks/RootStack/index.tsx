@@ -12,7 +12,7 @@ import {RootStackNavigationProps} from './types';
  * fade animate trasition navigation
  * @param {*} {current, closing}
  */
-export const forFade = ({current}: any) => ({
+export const forFade = ({current}: { current: { progress: number } }) => ({
   cardStyle: {
     opacity: current.progress,
   },

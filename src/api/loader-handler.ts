@@ -1,10 +1,4 @@
-import {
-  isFulfilled,
-  isPending,
-  isRejected,
-  isRejectedWithValue,
-  Middleware,
-} from '@reduxjs/toolkit';
+import {isFulfilled, isPending, isRejected, isRejectedWithValue, Middleware} from '@reduxjs/toolkit';
 
 import {settingsRedux} from '@/store';
 
@@ -16,10 +10,7 @@ export const rtkQueryLoaderHandler: Middleware =
       dispatch(settingsRedux.changeLoadingState(true));
     }
 
-    if (
-      getState().settings.appLoader &&
-      (isFulfilled(action) || isRejected(action) || isRejectedWithValue(action))
-    ) {
+    if (getState().settings.appLoader && (isFulfilled(action) || isRejected(action) || isRejectedWithValue(action))) {
       dispatch(settingsRedux.changeLoadingState(false));
     }
 

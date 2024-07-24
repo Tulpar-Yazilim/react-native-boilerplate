@@ -8,9 +8,6 @@ export type RootStackNavigationProps = {
   [routes.HOME_ROOT]: undefined;
 };
 
-export type RootStackNavigationPropsType =
-  NativeStackNavigationProp<RootStackNavigationProps>;
+export type RootStackNavigationPropsType = NativeStackNavigationProp<RootStackNavigationProps>;
 
-export type RootStackNavigationRouteType<
-  TPageName extends Keyof<RootStackNavigationProps>,
-> = RouteProp<RootStackNavigationProps, TPageName>;
+export type RootStackNavigationRouteType<TPageName extends Keyof<RootStackNavigationProps>> = RouteProp<RootStackNavigationProps, TPageName>;

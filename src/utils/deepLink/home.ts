@@ -10,10 +10,7 @@ const homePageDeepLinkRoutes: DeeplinkConfigType[] = [
   },
 ];
 
-const navigateToHomeScreensFromDeeplink = (
-  url: string,
-  config: DeeplinkConfigType,
-) => {
+const navigateToHomeScreensFromDeeplink = (url: string, config: DeeplinkConfigType) => {
   switch (config.route) {
     case routes.HOME_SCREEN:
       setTimeout(() => {

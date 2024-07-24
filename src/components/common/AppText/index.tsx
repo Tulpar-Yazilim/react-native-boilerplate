@@ -4,10 +4,10 @@ import {Text} from 'react-native';
 
 interface Props {
   children: string;
-  langQuery?: Object;
+  langQuery?: object;
 }
 
-export function AppText({children, langQuery = {}, ...props}: Props) {
+export function AppText({children, langQuery = {}, ...props}: Readonly<Props>) {
   return (
     <>
       {typeof children === 'string' ? (

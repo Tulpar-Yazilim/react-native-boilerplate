@@ -1,12 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React, {FunctionComponent, ReactElement} from 'react';
 
-import {ToastPosition} from 'react-native-toast-message';
-
-import {SchemaInputType} from '@/components/Common/Form/types';
-
-import {LocalNotificationType, ToastType} from './enums';
-import {setupSizeTypes} from '../style/size';
+import {LocalNotificationType} from './enums';
 
 export type ScreenType = {
   title?: string;
@@ -18,29 +13,11 @@ export type ScreenType = {
   props?: never;
 };
 
-export type ToastParams = {
-  type: ToastType;
-  title: string;
-  message: string;
-  duration?: number;
-  position?: ToastPosition;
-};
-
 export type Coordinates = {
   title?: string;
   description?: string;
   latitude: number;
   longitude: number;
-};
-
-export type FormitDescription = {
-  meta?: FormitMeta;
-};
-
-export type FormitMeta = {
-  col?: number;
-  label?: string;
-  type?: keyof typeof SchemaInputType;
 };
 
 export type ImageType = {
@@ -69,12 +46,6 @@ export type LocalNotificationParams = {
   scheduleDate?: Date;
 };
 
-export type UseThemeType = {
-  s?: string;
-};
-
-export type SetupSizeTypes = Omit<setupSizeTypes, 'setupSizeTypes'>;
-
 export type Nullable<T> = T | null;
 export type Undefined<T> = T | null | undefined;
 export type IndexedString<T> = Record<string, T>;
@@ -86,8 +57,8 @@ export type KeyofList<Values> = {
       ? KeyofList<Values[K][number]>[] | string | string[]
       : string | string[]
     : Values[K] extends object
-    ? KeyofList<Values[K]>
-    : string;
+      ? KeyofList<Values[K]>
+      : string;
 };
 export type NavigationScreenListenerEvent = {
   data: {

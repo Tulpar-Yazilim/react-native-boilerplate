@@ -2,7 +2,6 @@ import {Linking} from 'react-native';
 
 import {LinkingOptions, PathConfigMap} from '@react-navigation/native';
 
-import routes from '@/navigations/routes';
 import {RootStackNavigationProps} from '@/navigations/stacks';
 import {navigateToScreenFromDeeplink} from '@/utils';
 
@@ -13,9 +12,9 @@ interface LinkingConfig {
 
 const config: LinkingConfig = {
   screens: {
-    [routes.HOME_SCREEN]: {
-      path: routes.HOME_SCREEN,
-    },
+    // [routes.HOME_SCREEN]: {
+    //   path: routes.HOME_SCREEN,
+    // },
   },
 };
 

@@ -36,11 +36,6 @@ const settingsSlice = createSlice({
 });
 
 const {actions, reducer} = settingsSlice;
-export const {
-  changeLanguage,
-  changeLoadingState,
-  setTheme,
-  changeBottomTabDisplay,
-} = actions;
+export const {changeLanguage, changeLoadingState, setTheme, changeBottomTabDisplay} = actions;
 
 export default reducer;

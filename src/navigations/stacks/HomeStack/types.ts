@@ -13,9 +13,6 @@ export type HomeStackNavigationProps = {
   };
 };
 
-export type HomeStackNavigationPropsType =
-  NativeStackNavigationProp<HomeStackNavigationProps>;
+export type HomeStackNavigationPropsType = NativeStackNavigationProp<HomeStackNavigationProps>;
 
-export type HomeStackNavigationRouteType<
-  TPageName extends Keyof<HomeStackNavigationProps>,
-> = RouteProp<HomeStackNavigationProps, TPageName>;
+export type HomeStackNavigationRouteType<TPageName extends Keyof<HomeStackNavigationProps>> = RouteProp<HomeStackNavigationProps, TPageName>;

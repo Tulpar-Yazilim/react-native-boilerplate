@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {setupListeners} from '@reduxjs/toolkit/query';
-import EncryptedStorage from 'react-native-encrypted-storage';
+import MMKVStorage from '../utils/storage';
 import {combineReducers} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
 
@@ -15,14 +15,14 @@ const rootPersistConfig = {
   key: 'root',
   version: 1,
   blacklist: [baseApi.reducerPath],
-  storage: EncryptedStorage,
+  storage: MMKVStorage,
 };
 
 const settingsPersistConfig = {
   key: 'settings',
   version: 1,
   blacklist: ['appLoader'],
-  storage: EncryptedStorage,
+  storage: MMKVStorage,
 };
 
 export const rootReducer = combineReducers({
