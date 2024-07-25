@@ -5,4 +5,4 @@ const getDeviceBatteryInfo = () => getBatteryLevelSync();
 const getDeviceSystemVersion = () => getSystemVersion();
 const getDeviceApplicationVersion = () => getVersion();
 
-export {getDeviceInfo, getDeviceBatteryInfo, getDeviceSystemVersion, getDeviceApplicationVersion};
+export {getDeviceApplicationVersion, getDeviceBatteryInfo, getDeviceInfo, getDeviceSystemVersion};

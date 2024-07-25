@@ -1,6 +1,7 @@
-import {t} from 'i18next';
 import React from 'react';
 import {Text} from 'react-native';
+
+import {t} from 'i18next';
 
 interface Props {
   children: string;
@@ -8,13 +9,5 @@ interface Props {
 }
 
 export function AppText({children, langQuery = {}, ...props}: Readonly<Props>) {
-  return (
-    <>
-      {typeof children === 'string' ? (
-        <Text {...props}>{t(children, {...langQuery})}</Text>
-      ) : (
-        <Text {...props}>{children}</Text>
-      )}
-    </>
-  );
+  return <>{typeof children === 'string' ? <Text {...props}>{t(children, {...langQuery})}</Text> : <Text {...props}>{children}</Text>}</>;
 }
