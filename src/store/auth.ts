@@ -6,13 +6,13 @@ export interface IAuthState {
 }
 
 export const initialState: IAuthState = {
-  user: undefined,
   token: '',
+  user: undefined,
 };
 
 const authSlice = createSlice({
-  name: 'authSlice',
   initialState,
+  name: 'authSlice',
   reducers: {
     login: (state, action) => {
       state.token = action.payload;

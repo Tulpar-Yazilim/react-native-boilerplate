@@ -19,8 +19,14 @@ const config: LinkingConfig = {
 };
 
 const linking: LinkingOptions<RootStackNavigationProps> = {
-  prefixes: ['boilerplate://', 'https://boilerplate.com'],
   config,
+  async getInitialURL() {
+    // When app is closed
+    const url = await Linking.getInitialURL();
+    navigateToScreenFromDeeplink(url);
+    return url;
+  },
+  prefixes: ['boilerplate://', 'https://boilerplate.com'],
   subscribe(listener) {
     // When app is opened
     const linkingSubscription = Linking.addEventListener('url', ({url}) => {
@@ -31,12 +37,6 @@ const linking: LinkingOptions<RootStackNavigationProps> = {
     return () => {
       linkingSubscription.remove();
     };
-  },
-  async getInitialURL() {
-    // When app is closed
-    const url = await Linking.getInitialURL();
-    navigateToScreenFromDeeplink(url);
-    return url;
   },
 };
 

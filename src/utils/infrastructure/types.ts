@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, {FunctionComponent, ReactElement} from 'react';
 
-import { LocalNotificationType } from './enums';
+import {LocalNotificationType} from './enums';
 
 export type ScreenType = {
   title?: string;
@@ -79,16 +79,4 @@ export type DeeplinkConfigType = {
   component: FunctionComponent;
 };
 
-export type FontWeightType =
-  | 'normal'
-  | 'bold'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | undefined;
+export type FontWeightType = 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | undefined;

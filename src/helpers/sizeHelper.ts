@@ -16,4 +16,4 @@ const fontPixel = (size: number): number => {
   return size;
 };
 
-export {widthPixel, heightPixel, fontPixel, screenWidth, screenHeight};
+export {fontPixel, heightPixel, screenHeight, screenWidth, widthPixel};

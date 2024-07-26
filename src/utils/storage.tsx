@@ -1,17 +1,13 @@
-import { Storage } from 'redux-persist'
 import {MMKV} from 'react-native-mmkv';
+import { Storage } from 'redux-persist'
 
 
 const storage = new MMKV({
-  id: 'storage-boilerplate',
-  encryptionKey: '4e8cff8b3a814bcd0479d51e9cf45dfd9afbbe35', // generate guid and hashed into sha1 hash
+  encryptionKey: '4e8cff8b3a814bcd0479d51e9cf45dfd9afbbe35',
+  id: 'storage-boilerplate', // generate guid and hashed into sha1 hash
 });
 
 const storageUtils: Storage = {
-  setItem: (key, value) => {
-    storage.set(key, value)
-    return Promise.resolve(true)
-  },
   getItem: (key) => {
     const value = storage.getString(key)
     return Promise.resolve(value)
@@ -19,6 +15,10 @@ const storageUtils: Storage = {
   removeItem: (key) => {
     storage.delete(key)
     return Promise.resolve()
+  },
+  setItem: (key, value) => {
+    storage.set(key, value)
+    return Promise.resolve(true)
   },
 };
 

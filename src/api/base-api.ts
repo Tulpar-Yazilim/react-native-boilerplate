@@ -6,7 +6,6 @@ import type {RootState} from '../store';
 const baseURL = Config.API_URL;
 
 const baseApi = createApi({
-  reducerPath: 'baseApiReducer',
   baseQuery: fetchBaseQuery({
     baseUrl: baseURL,
     prepareHeaders: (headers, {getState}) => {
@@ -20,6 +19,7 @@ const baseApi = createApi({
     },
   }),
   endpoints: () => ({}),
+  reducerPath: 'baseApiReducer',
 });
 
 export {baseApi};

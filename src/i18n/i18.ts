@@ -6,11 +6,11 @@ import tr from './languages/tr';
 
 const initLocale = async (langauge: string = 'tr') => {
   const resources = {
-    tr: {
-      translation: tr,
-    },
     en: {
       translation: en,
+    },
+    tr: {
+      translation: tr,
     },
   };
 
@@ -18,13 +18,13 @@ const initLocale = async (langauge: string = 'tr') => {
     .use(initReactI18next)
     .init({
       compatibilityJSON: 'v3',
-      resources,
       fallbackLng: 'tr',
-      react: {useSuspense: false},
       initImmediate: false,
       interpolation: {
         escapeValue: false,
       },
+      react: {useSuspense: false},
+      resources,
     })
     .then(async () => {
       await i18n.changeLanguage(langauge);

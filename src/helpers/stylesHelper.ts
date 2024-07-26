@@ -1,50 +1,53 @@
-import {FontWeightType} from '@/utils';
 import {ColorValue, Dimensions, FlexAlignType, FlexStyle, Platform} from 'react-native';
+
 import DeviceInfo from 'react-native-device-info';
+
+import {FontWeightType} from '@/utils';
+
 import {fontPixel, heightPixel} from './sizeHelper';
 
 const projectColors = {
-  primary: '#1890ff',
-  success: ' #52c41a',
-  warning: '#faad14',
-  error: '#f5222d',
-  info: '#1890ff',
-  white: '#FFFFFFFF' as ColorValue,
-  textBlack: '#212123FF' as ColorValue,
+  black: '#000000FF' as ColorValue,
+  black40: '#00000040' as ColorValue,
   black50: '#1A0407' as ColorValue,
   black100: '#1B0407FF' as ColorValue,
-  black40: '#00000040' as ColorValue,
-  black: '#000000FF' as ColorValue,
-  blackShadow: '#00000035' as ColorValue,
-  transparentBlack: '#000000A0' as ColorValue,
-  red125: '#A1051DFF' as ColorValue,
-  red100: '#CE233AFF' as ColorValue,
-  red50: '#F4505FFF' as ColorValue,
-  red: '#D63031FF' as ColorValue,
-  purple100: '#A52DB4FF' as ColorValue,
-  purpleLigth2: '#EEECFBFF' as ColorValue,
-  purpleLight: '#F4F3FFFF' as ColorValue,
-  transparent: '#FFFFFF00' as ColorValue,
-  pink: '#FF576D' as ColorValue,
-  yellow: '#E9BD66' as ColorValue,
   blackFilter: '#282626' as ColorValue,
+  blackShadow: '#00000035' as ColorValue,
+  error: '#f5222d',
+  info: '#1890ff',
+  pink: '#FF576D' as ColorValue,
+  primary: '#1890ff',
+  purple100: '#A52DB4FF' as ColorValue,
+  purpleLight: '#F4F3FFFF' as ColorValue,
+  purpleLigth2: '#EEECFBFF' as ColorValue,
+  red: '#D63031FF' as ColorValue,
+  red50: '#F4505FFF' as ColorValue,
+  red100: '#CE233AFF' as ColorValue,
+  red125: '#A1051DFF' as ColorValue,
+  success: ' #52c41a',
+  textBlack: '#212123FF' as ColorValue,
+  transparent: '#FFFFFF00' as ColorValue,
+  transparentBlack: '#000000A0' as ColorValue,
+  warning: '#faad14',
+  white: '#FFFFFFFF' as ColorValue,
+  yellow: '#E9BD66' as ColorValue,
 };
 
 const fontFamily = {
-  regular: 'DMSans-Regular',
+  bold: 'DMSans-Bold',
+  boldItalic: 'DMSans-BoldItalic',
   italic: 'DMSans-Italic',
   medium: 'DMSans-Medium',
   mediumItalic: 'DMSans-MediumItalic',
-  bold: 'DMSans-Bold',
-  boldItalic: 'DMSans-BoldItalic',
+  regular: 'DMSans-Regular',
 };
 
 const boxShadow = (size = 6, shadowColor: ColorValue = '#000'): object => ({
+  elevation: size,
   shadowColor: shadowColor,
-  shadowOffset: {width: 0, height: size / 2},
+  shadowOffset: {height: size / 2, width: 0},
   shadowOpacity: (0.27 * size) / 6,
   shadowRadius: (4.65 * size) / 6,
-  elevation: size,
 });
 
 const textFont = (
@@ -63,10 +66,10 @@ const textFont = (
     fontWeight?: FontWeightType;
   } = {
     color: fontColor,
-    fontStyle: fontStyle,
-    fontSize: fontPixel(fontSize ? fontSize : 14),
-    lineHeight: lineHeight ? fontPixel(lineHeight) : undefined,
     fontFamily: fontStyle === 'normal' ? fontFamily.regular : fontFamily.italic,
+    fontSize: fontPixel(fontSize ? fontSize : 14),
+    fontStyle: fontStyle,
+    lineHeight: lineHeight ? fontPixel(lineHeight) : undefined,
   };
 
   switch (fontWeight) {
@@ -96,11 +99,11 @@ const flexBox = (
   flexWrap: 'wrap' | 'nowrap' | 'wrap-reverse' | undefined = undefined,
 ): FlexStyle => {
   return {
+    alignItems,
     display: 'flex',
     flexDirection,
-    justifyContent,
-    alignItems,
     flexWrap,
+    justifyContent,
   };
 };
 
