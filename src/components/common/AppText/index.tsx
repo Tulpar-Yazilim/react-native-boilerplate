@@ -10,8 +10,7 @@ interface Props {
 }
 
 export function AppText({children, langQuery = {}, ...props}: Readonly<Props>) {
-  return <>{typeof children === 'string' ? <Text {...props}>{t(children, {...langQuery})}</Text> : <Text {...props}>{children}</Text>}</>;
-  const {t} = useTranslation();
+   const {t} = useTranslation();
 
   return <>{typeof children === 'string' ? <Text {...props}>{t(children, {...langQuery})}</Text> : <Text {...props}>{children}</Text>}</>;
 }
