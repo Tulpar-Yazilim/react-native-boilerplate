@@ -1,13 +1,13 @@
-import {linking} from '@/config';
-import {useAppDispatch, useAppSelector} from '@/hooks';
-import {initLocale} from '@/i18n';
-import {persistor, settingsRedux, store} from '@/store';
-import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import React, {useEffect} from 'react';
-import {Keyboard, StatusBar, useColorScheme} from 'react-native';
-import {Provider} from 'react-redux';
-import {PersistGate} from 'redux-persist/integration/react';
-import {RootStack} from './navigations/stacks';
+import { linking } from '@/config';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { initLocale } from '@/i18n';
+import { persistor, settingsRedux, store } from '@/store';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { Keyboard, StatusBar, useColorScheme } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { RootStack } from './navigations/stacks';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();
@@ -45,3 +45,4 @@ export function App() {
     </Provider>
   );
 }
+
