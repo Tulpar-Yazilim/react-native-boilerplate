@@ -6,6 +6,9 @@ import {
   getProjectAnnotations,
 } from "@storybook/react-native";
 
+import "@storybook/addon-essentials/register";
+import "@storybook/addon-react-native-web/register";
+
 const normalizedStories = [
   {
     titlePrefix: "",

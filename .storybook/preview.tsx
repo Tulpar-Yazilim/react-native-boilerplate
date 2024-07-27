@@ -1,8 +1,21 @@
-import type { Preview } from '@storybook/react';
+import React from 'react';
+import {View} from 'react-native';
 
-const preview: Preview = {
-  parameters: {},
-  decorators: [],
+export const parameters = {
+  actions: {argTypesRegex: '^on[A-Z].*'},
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
 };
 
-export default preview;
+export const decorators = [
+  /* by wrapping everything in a view the parent container is always using flexbox and behaves like a react-native-web component would  */
+  Story => (
+    <View>
+      <Story />
+    </View>
+  ),
+];

@@ -1,12 +1,5 @@
 /* eslint-disable no-undef */
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
-const { generate } = require('@storybook/react-native/scripts/generate');
-const path = require("path")
-
-generate({
-  configPath: path.resolve(__dirname, './.storybook'),
-});
-
 
 /**
  * Metro configuration
@@ -15,8 +8,8 @@ generate({
  * @type {import('metro-config').MetroConfig}
  */
 const config = {
-  transformer: {
-    unstable_allowRequireContext: true,
+  resolver: {
+    resolverMainFields: ['main', 'react-native'],
   },
 };
 

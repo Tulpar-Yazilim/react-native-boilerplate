@@ -75,3 +75,5 @@ yarn-error.log
 
 # react-native-config codegen
 ios/tmp.xcconfig
+package-lock.json
+.yarn.lock
