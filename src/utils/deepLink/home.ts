@@ -1,6 +1,7 @@
 import routes from '@/navigations/routes';
 import {rootNavigationRef} from '@/navigations/stacks';
 import {HomeScreen} from '@/screens';
+
 import {DeeplinkConfigType} from '../infrastructure/types';
 
 const homePageDeepLinkRoutes: DeeplinkConfigType[] = [

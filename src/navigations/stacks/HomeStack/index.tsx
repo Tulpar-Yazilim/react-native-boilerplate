@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import routes from '@/navigations/routes';
 import {HomeScreen} from '@/screens';
+
 import {HomeStackNavigationProps} from './types';
 
 const Stack = createNativeStackNavigator<HomeStackNavigationProps>();

@@ -4,7 +4,7 @@ import DeviceInfo from 'react-native-device-info';
 
 import {FontWeightType} from '@/utils';
 
-import {fontPixel, heightPixel} from './sizeHelper';
+import {fontPixel, heightPixel} from './size-helper';
 
 const projectColors = {
   black: '#000000FF' as ColorValue,

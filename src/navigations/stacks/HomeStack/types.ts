@@ -1,6 +1,8 @@
-import {Keyof} from '@/utils';
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import {Keyof} from '@/utils';
+
 import routes from '../../routes';
 
 export type HomeScreen = {
