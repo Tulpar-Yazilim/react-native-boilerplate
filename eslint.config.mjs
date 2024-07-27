@@ -16,7 +16,7 @@ export default [
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
-    ignores: ['**/*/*.js', '*.js', '*.svg', '*.json', '*.png', 'package.json', 'package-lock.json', 'yarn.lock'],
+    ignores: ['**/*/*.js', '.storybook/', '*.stories.@(ts|tsx|js|jsx|mjs|cjs)', '*.js', '*.svg', '*.json', '*.png', 'package.json', 'package-lock.json', 'yarn.lock'],
     plugins: {
       '@typescript-eslint': typescriptEslint,
       import: importPlugin,
