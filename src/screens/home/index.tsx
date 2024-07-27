@@ -1,11 +1,15 @@
+import React, {useLayoutEffect} from 'react';
+import {Button, View} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
+
 import {AppText} from '@/components/common';
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {HomeStackNavigationPropsType} from '@/navigations/stacks';
 import {settingsRedux} from '@/store';
-import {useNavigation} from '@react-navigation/native';
-import React, {useLayoutEffect} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Button, View} from 'react-native';
+
+
 
 const HeaderRight = ({language}: {language: string}) => (
   <View>

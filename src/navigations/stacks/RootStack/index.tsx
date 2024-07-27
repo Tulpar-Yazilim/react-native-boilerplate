@@ -5,8 +5,9 @@ import {createNavigationContainerRef} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import routes from '@/navigations/routes';
-import HomeStack from '../HomeStack';
+
 import {RootStackNavigationProps} from './types';
+import HomeStack from '../HomeStack';
 
 /**
  * fade animate trasition navigation
