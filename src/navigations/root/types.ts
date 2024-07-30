@@ -6,6 +6,7 @@ import {Keyof} from '@/utils';
 
 export type RootStackNavigationProps = {
   [routes.HOME_ROOT]: undefined;
+  [routes.MAIN_TABS]: undefined;
 };
 
 export type RootStackNavigationPropsType = NativeStackNavigationProp<RootStackNavigationProps>;

@@ -1,5 +1,6 @@
 export default Object.freeze({
-  ALERT: 'ALERT',
+  MAIN_TABS: 'MAIN_TABS',
   HOME_ROOT: 'HOME_ROOT',
-  HOME_SCREEN: 'HOME_SCREEN', // Do not redirect!
+  HOME_SCREEN: 'HOME_SCREEN',
+  ALERT: 'ALERT', // Do not redirect!
 });

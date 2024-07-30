@@ -7,13 +7,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import routes from '@/navigations/routes';
 
 import {RootStackNavigationProps} from './types';
-import HomeStack from '../HomeStack';
+import {BottomTabNavigation} from '../bottom-tab';
+import HomeStack from '../stacks/HomeStack';
 
 /**
  * fade animate trasition navigation
  * @param {*} {current, closing}
  */
-export const forFade = ({current}: { current: { progress: number } }) => ({
+export const forFade = ({current}: {current: {progress: number}}) => ({
   cardStyle: {
     opacity: current.progress,
   },
@@ -21,14 +22,20 @@ export const forFade = ({current}: { current: { progress: number } }) => ({
 
 export const PlaceholderComponent = () => <View />;
 
-const RootStackNavigator =
-  createNativeStackNavigator<RootStackNavigationProps>();
-export const rootNavigationRef =
-  createNavigationContainerRef<RootStackNavigationProps>();
+const RootStackNavigator = createNativeStackNavigator<RootStackNavigationProps>();
+export const rootNavigationRef = createNavigationContainerRef<RootStackNavigationProps>();
 
-const RootStack = () => {
+const RootNavigator = () => {
   return (
     <RootStackNavigator.Navigator>
+      <RootStackNavigator.Screen
+        name={routes.MAIN_TABS}
+        component={BottomTabNavigation}
+        options={{
+          headerShown: false,
+        }}
+      />
+
       <RootStackNavigator.Screen
         name={routes.HOME_ROOT}
         component={HomeStack}
@@ -40,4 +47,4 @@ const RootStack = () => {
   );
 };
 
-export default RootStack;
+export default RootNavigator;

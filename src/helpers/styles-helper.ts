@@ -1,10 +1,10 @@
-import {ColorValue, Dimensions, FlexAlignType, FlexStyle, Platform} from 'react-native';
+import {ColorValue, Dimensions, FlexAlignType, FlexStyle, Platform, StyleSheet} from 'react-native';
 
 import DeviceInfo from 'react-native-device-info';
 
 import {FontWeightType} from '@/utils';
 
-import {fontPixel, heightPixel} from './size-helper';
+import {fontPixel, heightPixel, widthPixel} from './size-helper';
 
 const projectColors = {
   black: '#000000FF' as ColorValue,
@@ -31,6 +31,11 @@ const projectColors = {
   warning: '#faad14',
   white: '#FFFFFFFF' as ColorValue,
   yellow: '#E9BD66' as ColorValue,
+};
+
+const themeColors = {
+  light: projectColors,
+  dark: projectColors,
 };
 
 const fontFamily = {
@@ -99,8 +104,8 @@ const flexBox = (
   flexWrap: 'wrap' | 'nowrap' | 'wrap-reverse' | undefined = undefined,
 ): FlexStyle => {
   return {
-    alignItems,
     display: 'flex',
+    alignItems,
     flexDirection,
     flexWrap,
     justifyContent,
@@ -110,4 +115,45 @@ const flexBox = (
 export const isSmallDevice = Platform.OS === 'ios' ? !DeviceInfo.hasNotch() : Dimensions.get('screen').height < 650;
 export const tabbarHeight: number = !isSmallDevice && Platform.OS === 'ios' ? heightPixel(90) : heightPixel(62);
 
-export {boxShadow, flexBox, fontFamily, projectColors, textFont};
+export const tabIconSize = widthPixel(20);
+export const tabIconColor = projectColors.black;
+export const tabIconSelectedColor = projectColors.red;
+
+export const generalStyles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+  flexGrow: {
+    flexGrow: 1,
+  },
+  overflow: {overflow: 'hidden'},
+  noMargin: {margin: 0},
+  noPadding: {padding: 0},
+  noSpacing: {padding: 0, margin: 0},
+  fullWidthHeight: {
+    width: '100%',
+    height: '100%',
+  },
+  fullMinHeight: {
+    minHeight: '100%',
+  },
+  relative: {position: 'relative'},
+  absolute: {position: 'absolute'},
+  absoluteFill: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 9991,
+  },
+  tab: {
+    alignItems: 'center',
+    backgroundColor: projectColors.white,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    width: '100%',
+    height: tabbarHeight,
+  },
+});
+
+export {boxShadow, flexBox, fontFamily, projectColors, themeColors, textFont};

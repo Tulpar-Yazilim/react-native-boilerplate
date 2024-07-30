@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Keyboard, StatusBar, StyleSheet, useColorScheme} from 'react-native';
+import {Keyboard, StatusBar, useColorScheme} from 'react-native';
 
 import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
@@ -12,7 +12,8 @@ import {useAppDispatch, useAppSelector} from '@/hooks';
 import {initLocale} from '@/i18n';
 import {persistor, settingsRedux, store} from '@/store';
 
-import {RootStack} from './navigations/stacks';
+import {generalStyles} from './helpers';
+import RootNavigator from './navigations/root';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();
@@ -36,7 +37,7 @@ const MainContainer = () => {
   return (
     <NavigationContainer linking={linking} theme={isDarkMode ? DarkTheme : DefaultTheme}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <RootStack />
+      <RootNavigator />
     </NavigationContainer>
   );
 };
@@ -45,8 +46,8 @@ export function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <SafeAreaProvider style={styles.container}>
-          <GestureHandlerRootView style={styles.container}>
+        <SafeAreaProvider style={generalStyles.flex}>
+          <GestureHandlerRootView style={generalStyles.flex}>
             <MainContainer />
           </GestureHandlerRootView>
         </SafeAreaProvider>
@@ -54,9 +55,3 @@ export function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
