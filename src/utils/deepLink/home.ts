@@ -1,6 +1,6 @@
 import routes from '@/navigations/routes';
 import {rootNavigationRef} from '@/navigations/stacks';
-import {HomeScreen} from '@/screens';
+import {HomeScreen} from '@/pages';
 
 import {DeeplinkConfigType} from '../infrastructure/types';
 
