@@ -1,8 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import {AppText} from '..';
+
+import {AppText} from '../..';
 
 const meta = {
-  title: 'common/AppText',
+  title: 'Components/AppText',
   component: AppText,
 } satisfies Meta<typeof AppText>;
 
