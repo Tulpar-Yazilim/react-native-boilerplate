@@ -31,6 +31,8 @@ const projectColors = {
   warning: '#faad14',
   white: '#FFFFFFFF' as ColorValue,
   yellow: '#E9BD66' as ColorValue,
+  grey: '#F3F3F3FF' as ColorValue,
+  blue: '#4032CFFF' as ColorValue,
 };
 
 const themeColors = {
@@ -55,43 +57,38 @@ const boxShadow = (size = 6, shadowColor: ColorValue = '#000'): object => ({
   shadowRadius: (4.65 * size) / 6,
 });
 
-const textFont = (
-  fontSize: number | undefined = undefined,
-  fontColor: ColorValue | undefined = projectColors.black,
-  fontWeight: 'regular' | 'medium' | 'bold' = 'regular',
-  fontStyle: 'normal' | 'italic' = 'normal',
-  lineHeight: number | undefined = undefined,
-): object => {
+const textFont = (fontSize?: number, fontColor?: ColorValue, fontWeight?: 'regular' | 'medium' | 'bold', fontStyle?: 'normal' | 'italic', lineHeight?: number): object => {
   const turnItem: {
     fontSize: number;
     fontFamily: string;
-    color?: ColorValue | undefined;
-    fontStyle?: string | undefined;
-    lineHeight?: number | undefined;
-    fontWeight?: FontWeightType;
+    color?: ColorValue;
+    fontStyle?: string;
+    lineHeight?: number;
+    fontWeight?: FontWeightType | 'regular' | 'medium';
   } = {
-    color: fontColor,
+    color: fontColor ?? projectColors.black,
     fontFamily: fontStyle === 'normal' ? fontFamily.regular : fontFamily.italic,
-    fontSize: fontPixel(fontSize ? fontSize : 14),
-    fontStyle: fontStyle,
+    fontSize: fontPixel(fontSize ?? 14),
+    fontWeight: (fontWeight ?? 'regular') as FontWeightType,
+    fontStyle: fontStyle ?? 'normal',
     lineHeight: lineHeight ? fontPixel(lineHeight) : undefined,
   };
 
-  switch (fontWeight) {
+  switch (turnItem.fontWeight) {
     case 'bold':
-      turnItem.fontFamily = fontStyle === 'normal' ? fontFamily.bold : fontFamily.boldItalic;
+      turnItem.fontFamily = turnItem.fontStyle === 'normal' ? fontFamily.bold : fontFamily.boldItalic;
       turnItem.fontWeight = 'bold';
       break;
     case 'medium':
-      turnItem.fontFamily = fontStyle === 'normal' ? fontFamily.medium : fontFamily.mediumItalic;
+      turnItem.fontFamily = turnItem.fontStyle === 'normal' ? fontFamily.medium : fontFamily.mediumItalic;
       turnItem.fontWeight = '500';
       break;
     case 'regular':
-      turnItem.fontFamily = turnItem.fontFamily = fontStyle === 'normal' ? fontFamily.regular : fontFamily.italic;
+      turnItem.fontFamily = turnItem.fontFamily = turnItem.fontStyle === 'normal' ? fontFamily.regular : fontFamily.italic;
       turnItem.fontWeight = 'normal';
       break;
     default:
-      turnItem.fontFamily = turnItem.fontFamily = fontStyle === 'normal' ? fontFamily.regular : fontFamily.italic;
+      turnItem.fontFamily = turnItem.fontFamily = turnItem.fontStyle === 'normal' ? fontFamily.regular : fontFamily.italic;
   }
 
   return turnItem;

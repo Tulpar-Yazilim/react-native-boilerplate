@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {Linking, Platform} from 'react-native';
+import {Linking, Platform, StyleProp, TextStyle} from 'react-native';
 
 import ImageResizer from '@bam.tech/react-native-image-resizer';
 import notifee, {Notification, TimestampTrigger, TriggerType} from '@notifee/react-native';
@@ -25,7 +25,7 @@ const customHTMLElementModels = {
 
 type RenderHtmlProps = {
   html: string;
-  styles?: MixedStyleDeclaration;
+  styles?: MixedStyleDeclaration | StyleProp<TextStyle>;
 };
 
 const RenderHtmlComponent = ({html, styles}: RenderHtmlProps) => {
@@ -34,7 +34,7 @@ const RenderHtmlComponent = ({html, styles}: RenderHtmlProps) => {
       systemFonts={systemFonts}
       baseStyle={{
         fontFamily: fontFamily.regular,
-        ...styles,
+        ...(styles as object),
       }}
       contentWidth={screenWidth}
       source={{html}}

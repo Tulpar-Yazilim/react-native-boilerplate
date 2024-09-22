@@ -20,6 +20,7 @@ export const IconTypes = {
 export type AppIconType = {
   name: string;
   type: keyof typeof IconTypes;
-  color?: ColorValue | string;
+  color?: ColorValue;
+  size?: number;
   style?: StyleProp<TextStyle>;
 } & IconProp;

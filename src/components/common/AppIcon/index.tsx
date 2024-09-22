@@ -15,6 +15,8 @@ import OcticonIcon from 'react-native-vector-icons/Octicons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import ZocialIcon from 'react-native-vector-icons/Zocial';
 
+import {widthPixel} from '@/helpers';
+
 import {AppIconType} from './type';
 
 const getIconType = (type: string) => {
@@ -53,9 +55,9 @@ const getIconType = (type: string) => {
 };
 
 const AppIcon = (props: AppIconType) => {
-  const {type, name, ...rest} = props;
+  const {type, name, size, ...rest} = props;
   const IconComponent = getIconType(type);
-  return <IconComponent {...rest} name={name} />;
+  return <IconComponent {...rest} name={name} size={widthPixel(size ?? 24)} />;
 };
 
 export default memo(AppIcon);

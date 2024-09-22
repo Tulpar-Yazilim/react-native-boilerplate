@@ -1,15 +1,56 @@
-import React from 'react';
-import {Text} from 'react-native';
+import React, {memo} from 'react';
+import {Animated, Pressable, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-import {useTranslation} from 'react-i18next';
+import {HtmlRender, textFont} from '@/helpers';
+import {useTranslate} from '@/hooks';
 
-interface Props {
-  children: string;
-  langQuery?: object;
-}
+import {AppTextType} from './type';
 
-export function AppText({children, langQuery = {}, ...props}: Readonly<Props>) {
-  const {t} = useTranslation();
+const AppText = (props: Readonly<AppTextType>) => {
+  const {children, params, pressable, touchable, html, animated, style, onPress, ...otherProps} = props;
 
-  return <>{typeof children === 'string' ? <Text {...props}>{t(children, {...langQuery})}</Text> : <Text {...props}>{children}</Text>}</>;
-}
+  const _translate = useTranslate(children as string, params);
+  const i18nText = _translate || children;
+
+  // Content
+  const content = i18nText ?? '';
+
+  const insideStyles = StyleSheet.flatten([
+    {
+      ...textFont(),
+    },
+    style,
+  ]);
+
+  const TextComponent = animated ? Animated.Text : Text;
+  const PressableComponent = pressable ? Pressable : TouchableOpacity;
+
+  if (pressable || touchable) {
+    if (html) {
+      return (
+        <PressableComponent onPress={onPress}>
+          <HtmlRender {...otherProps} html={content as string} styles={insideStyles} />
+        </PressableComponent>
+      );
+    }
+    return (
+      <PressableComponent onPress={onPress}>
+        <TextComponent {...otherProps} style={insideStyles}>
+          {content}
+        </TextComponent>
+      </PressableComponent>
+    );
+  }
+
+  if (html) {
+    return <HtmlRender {...otherProps} html={content as string} />;
+  }
+
+  return (
+    <TextComponent {...otherProps} style={insideStyles}>
+      {content}
+    </TextComponent>
+  );
+};
+
+export default memo(AppText);

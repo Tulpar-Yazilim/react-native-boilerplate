@@ -6,7 +6,7 @@ export * from './useDebounce';
 export * from './useKeyboardAvoiding';
 export {default as useThemeColors} from './useThemeColors';
 export * from './useThemeMode';
-export * from './useTranslate';
+export {default as useTranslate} from './useTranslate';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => AppDispatch = useDispatch;

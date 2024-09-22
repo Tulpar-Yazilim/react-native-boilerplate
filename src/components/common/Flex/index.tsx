@@ -1,13 +1,17 @@
-import React, {FunctionComponent} from 'react';
+import React, {memo} from 'react';
 import {View} from 'react-native';
 
-import styles, {flexBoxStyle} from './styles';
+import {generalStyles} from '@/helpers';
+
+import {flexBoxStyle} from './styles';
 import type {FlexViewProps} from './type';
 
-export const Flex: FunctionComponent<FlexViewProps> = ({flex, direction, gap, justify, align, ...props}) => {
+const Flex = ({flex, direction, gap, justify, align, ...props}: Readonly<FlexViewProps>) => {
   return (
-    <View style={styles.main} {...props}>
+    <View style={generalStyles.flex} {...props}>
       <View style={flexBoxStyle({flex, direction, gap, justify, align})}>{props.children}</View>
     </View>
   );
 };
+
+export default memo(Flex);

@@ -96,6 +96,7 @@ export default [
       'react/jsx-filename-extension': ['error', {extensions: ['.tsx']}],
       'react-hooks/exhaustive-deps': 'off',
       'sort-imports': ['error', {ignoreCase: true, ignoreDeclarationSort: true}],
+      'react/display-name': 'off',
     },
     settings: {
       'import/resolver': {

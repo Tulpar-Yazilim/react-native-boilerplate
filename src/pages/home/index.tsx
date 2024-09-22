@@ -4,16 +4,14 @@ import {Button, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
-import {AppText} from '@/components/common';
+import {AppText} from '@/components';
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {HomeStackNavigationPropsType} from '@/navigations/stacks';
 import {settingsRedux} from '@/store';
 
-
-
 const HeaderRight = ({language}: {language: string}) => (
   <View>
-    <AppText langQuery={{language}}>language</AppText>
+    <AppText params={{language}}>language</AppText>
   </View>
 );
 
@@ -29,7 +27,6 @@ export function HomeScreen() {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-       
       headerRight: () => <HeaderRight language={language} />,
     });
   }, [navigation, language]);
