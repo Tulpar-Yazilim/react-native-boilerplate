@@ -9,12 +9,11 @@ import md5Encrypt from 'md5';
 import {launchImageLibrary} from 'react-native-image-picker';
 import RenderHtml, {defaultSystemFonts, HTMLContentModel, HTMLElementModel, MixedStyleDeclaration} from 'react-native-render-html';
 
+import {fontFamily} from '@/assets';
+
 import {screenWidth} from './size-helper';
-import {fontFamily} from './styles-helper';
 import {LocalNotificationType} from '../utils/infrastructure/enums';
 import {Coordinates, ImagePickerResultType, ImageResizeResultType, ImageType, LocalNotificationParams} from '../utils/infrastructure/types';
-
-const systemFonts = [...defaultSystemFonts, fontFamily.regular];
 
 const customHTMLElementModels = {
   font: HTMLElementModel.fromCustomModel({
@@ -29,6 +28,7 @@ type RenderHtmlProps = {
 };
 
 const RenderHtmlComponent = ({html, styles}: RenderHtmlProps) => {
+  const systemFonts = [...defaultSystemFonts, fontFamily.regular];
   return (
     <RenderHtml
       systemFonts={systemFonts}

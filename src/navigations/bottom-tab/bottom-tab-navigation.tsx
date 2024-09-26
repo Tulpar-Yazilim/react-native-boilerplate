@@ -3,8 +3,9 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Host} from 'react-native-portalize';
 
+import {tabIconColor, tabIconSelectedColor} from '@/assets';
 import {AppIcon} from '@/components';
-import {tabIconColor, tabIconSelectedColor, tabIconSize} from '@/helpers';
+import {tabIconSize} from '@/helpers';
 
 import {BottomTabContainer} from './bottom-tab-container';
 import {BottomTabStackNavigationProps} from './types';

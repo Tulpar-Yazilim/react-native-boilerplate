@@ -1,6 +1,7 @@
 import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
 
-import {flexBox, heightPixel, projectColors, textFont, widthPixel} from '@/helpers';
+import {projectColors} from '@/assets';
+import {flexBox, heightPixel, textFont, widthPixel} from '@/helpers';
 
 import {AppButtonProps, TextDecorationLine} from './type';
 

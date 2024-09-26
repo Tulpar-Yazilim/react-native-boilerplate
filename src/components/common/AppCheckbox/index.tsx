@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 
-import {projectColors} from '@/helpers';
+import {projectColors} from '@/assets';
 
 import styles, {getCheckboxTextContainerStyle, getCheckboxTextStyle} from './styles';
 import type {AppCheckboxProps} from './type';
@@ -41,4 +41,4 @@ const AppCheckbox = (props: AppCheckboxProps) => {
   );
 };
 
-export default AppCheckbox;
+export default memo(AppCheckbox);

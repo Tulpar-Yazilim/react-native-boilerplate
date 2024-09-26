@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import {View} from 'react-native';
 
-import {generalStyles} from '@/helpers';
+import {generalStyles} from '@/assets';
 
 import {flexBoxStyle} from './styles';
 import type {FlexViewProps} from './type';

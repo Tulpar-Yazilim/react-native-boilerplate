@@ -12,7 +12,7 @@ import {useAppDispatch, useAppSelector} from '@/hooks';
 import {initLocale} from '@/i18n';
 import {persistor, settingsRedux, store} from '@/store';
 
-import {generalStyles} from './helpers';
+import {generalStyles} from './assets';
 import RootNavigator from './navigations/root';
 
 const MainContainer = () => {

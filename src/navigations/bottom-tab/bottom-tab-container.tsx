@@ -3,8 +3,9 @@ import {Pressable, View} from 'react-native';
 
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
+import {generalStyles} from '@/assets';
 import {AppText} from '@/components';
-import {flexBox, generalStyles} from '@/helpers';
+import {flexBox} from '@/helpers';
 import {useAppSelector} from '@/hooks';
 
 export const BottomTabContainer = (props: BottomTabBarProps) => {

@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 
-import {flexBox, heightPixel, projectColors, textFont, widthPixel} from '@/helpers';
+import {projectColors} from '@/assets';
+import {flexBox, heightPixel, textFont, widthPixel} from '@/helpers';
 
 import {AppCheckboxProps} from './type';
 
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     ...flexBox('column', 'center', 'center'),
   },
   text: {
-    ...textFont(14, projectColors.black50, 'regular'),
+    ...textFont(14, projectColors.black50),
   },
   checkedContainer: {
     backgroundColor: projectColors.red,

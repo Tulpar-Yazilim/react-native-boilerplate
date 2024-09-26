@@ -1,6 +1,6 @@
 import {useColorScheme} from 'react-native';
 
-import {themeColors} from '@/helpers';
+import {themeColors} from '@/assets';
 import {useAppSelector} from '@/hooks';
 
 const useThemeColors = () => {

@@ -12,7 +12,7 @@ const AppButton = (props: AppButtonProps) => {
   const renderIcon = <AppIcon type={props.iconType} name={props.iconName} style={props.iconStyle} color={props.iconColor} size={props.iconSize} />;
 
   return (
-    <Pressable disabled={props.disabled} style={[styles.container, createCustomButtonStyle(props), props.style]} onPress={props.onPress}>
+    <Pressable {...props} style={[styles.container, createCustomButtonStyle(props), props.style]}>
       {props.type === 'icon' && renderIcon}
       {props.iconName && (props.iconPosition === 'left' || props.type === 'circle') && renderIcon}
       {props.text && (

@@ -1,11 +1,13 @@
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 
-import {flexBox, heightPixel, projectColors, textFont, widthPixel} from '@/helpers';
+import {projectColors} from '@/assets';
+import {flexBox, heightPixel, textFont, widthPixel} from '@/helpers';
 
 import {AppInputProps} from './type';
 
 const styles = StyleSheet.create({
   inputContainer: {
+    backgroundColor: projectColors.white,
     borderWidth: widthPixel(1),
     borderRadius: widthPixel(10),
     paddingHorizontal: widthPixel(24),
@@ -32,14 +34,21 @@ const styles = StyleSheet.create({
   },
   labelContent: {
     padding: 0,
-    ...textFont(16, projectColors.grey, 'medium'),
+    ...textFont(14, projectColors.black50, 'medium'),
   },
   labelContentFocused: {
     fontWeight: '400',
   },
   blockLabel: {
     marginTop: heightPixel(12),
-    ...textFont(11, undefined, 'regular', 'normal', 15),
+    ...textFont(11, projectColors.textBlack),
+  },
+  errorText: {
+    ...textFont(12, projectColors.error),
+    textAlignVertical: 'top',
+    height: 0,
+    padding: 0,
+    margin: 0,
   },
   iconContainer: {
     height: heightPixel(30),

@@ -1,5 +1,7 @@
 import React, {memo} from 'react';
-import {Animated, Pressable, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Pressable, StyleSheet, Text, TouchableOpacity} from 'react-native';
+
+import Animated from 'react-native-reanimated';
 
 import {HtmlRender, textFont} from '@/helpers';
 import {useTranslate} from '@/hooks';

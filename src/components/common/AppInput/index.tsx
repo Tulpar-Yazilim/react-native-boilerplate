@@ -1,9 +1,11 @@
-import React, {forwardRef, memo, PropsWithChildren, useEffect, useImperativeHandle, useRef, useState} from 'react';
-import {Animated, NativeSyntheticEvent, TextInput, TextInputEndEditingEventData, TextInputFocusEventData, TouchableOpacity, View} from 'react-native';
+import React, {forwardRef, memo, PropsWithChildren, useCallback, useEffect, useImperativeHandle, useRef, useState} from 'react';
+import {ActivityIndicator, NativeSyntheticEvent, Pressable, TextInput, TextInputEndEditingEventData, TextInputFocusEventData, TouchableOpacity, View} from 'react-native';
 
-import {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
+import {useTranslation} from 'react-i18next';
+import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
 
-import {projectColors} from '@/helpers';
+import {projectColors} from '@/assets';
+import {heightPixel} from '@/helpers';
 
 import styles, {getInputStyle} from './styles';
 import type {AppInputProps, AppInputRefType} from './type';
@@ -11,28 +13,76 @@ import AppIcon from '../AppIcon';
 
 const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((inProps, ref) => {
   const props = inProps as AppInputProps;
+  const {labelType = 'animated', animationDuration = 150, editable = true, iconPosition = 'right', iconColor = projectColors.grey, iconSize = 16} = props;
 
-  const [labelStatus, setLabelStatus] = useState<boolean>(!!props.value);
-  const inputRef = useRef<TextInput>(null);
+  const {t} = useTranslation();
+
+  const [labelStatus, setLabelStatus] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showClear, setShowClear] = useState<boolean>(false);
+
+  const inputRef = useRef<TextInput | null>(null);
+  const errorRef = useRef<TextInput | null>(null);
+  const valueRef = useRef<string | null>(null);
 
   const labelAnimate = useSharedValue(false);
 
-  const focus = () => {
-    inputRef?.current?.focus?.();
-  };
+  const focus = useCallback(() => {
+    inputRef.current?.focus?.();
+  }, []);
 
-  const blur = () => {
-    inputRef?.current?.blur?.();
-  };
+  const blur = useCallback(() => {
+    inputRef.current?.blur?.();
+  }, []);
+
+  const setNativeProps = useCallback((nativeProps: object) => {
+    inputRef.current?.setNativeProps?.(nativeProps);
+  }, []);
+
+  const setValue = useCallback(
+    (value: string) => {
+      inputRef.current?.setNativeProps?.({
+        text: value,
+      });
+      valueRef.current = value;
+    },
+    [inputRef.current, valueRef.current],
+  );
+
+  const getValue = useCallback(() => valueRef.current?.toString?.() ?? '', [valueRef]);
+
+  const setError = useCallback((errorMessage?: string) => {
+    errorRef.current?.setNativeProps({
+      text: errorMessage ?? '',
+      style: {
+        height: errorMessage ? heightPixel(15) : 0,
+        marginVertical: errorMessage ? heightPixel(3) : 0,
+      },
+    });
+
+    inputRef.current?.setNativeProps({
+      borderColor: errorMessage ? projectColors.error : projectColors.grey,
+      placeholderTextColor: errorMessage ? projectColors.error : projectColors.grey,
+    });
+  }, []);
 
   useImperativeHandle(ref, () => ({
+    setNativeProps,
+    setError,
+    setValue,
+    getValue,
     focus,
     blur,
   }));
 
   useEffect(() => {
-    labelAnimate.value = !!props.value || labelStatus;
-  }, [props.value, labelStatus]);
+    labelAnimate.value = !!valueRef.current || labelStatus;
+    setShowClear((props.clearable ?? false) && !!valueRef.current);
+  }, [valueRef.current, labelStatus]);
+
+  useEffect(() => {
+    setError(props.errorMessage);
+  }, [props.error, props.errorMessage]);
 
   useEffect(() => {
     if (props.autoFocus) {
@@ -40,77 +90,124 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
     }
   }, [props.autoFocus]);
 
+  useEffect(() => {
+    setValue(props.value ?? '');
+    setLabelStatus(!!props.value);
+  }, [props.value]);
+
   const labelStyle = useAnimatedStyle(() => {
     return {
       marginTop: withTiming(labelAnimate.value ? 12 : 19.5, {
-        duration: props.animationDuration,
+        duration: animationDuration,
       }),
-      fontSize: withTiming(labelAnimate.value ? 11 : 16, {
-        duration: props.animationDuration,
+      fontSize: withTiming(labelAnimate.value ? 11 : 14, {
+        duration: animationDuration,
       }),
       lineHeight: withTiming(labelAnimate.value ? 15 : 21, {
-        duration: props.animationDuration,
+        duration: animationDuration,
       }),
     };
   }, []);
 
   useEffect(() => {
-    if (labelStatus !== undefined) {
-      setLabelStatus(props.labelStatus!);
+    if (props.labelStatus !== undefined) {
+      setLabelStatus(props.labelStatus);
     }
   }, [props.labelStatus]);
-  const handleFocusTextInput = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setLabelStatus(true);
-    props.onFocus?.(e);
+
+  const handleOnChangeText = useCallback((text: string) => {
+    props.onChangeText?.(text);
+  }, []);
+
+  const handleOnBlur = useCallback((e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    props.onBlur?.(e);
+  }, []);
+
+  const handleOnFocus = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      setLabelStatus(true);
+      props.onFocus?.(e);
+    },
+    [labelStatus],
+  );
+
+  const handleOnEndEditing = useCallback(
+    (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+      setLabelStatus(!!e.nativeEvent.text);
+      props.onEndEditing?.(e);
+    },
+    [labelStatus],
+  );
+
+  const handleClearValue = () => {
+    inputRef.current?.setNativeProps?.({
+      text: '',
+    });
+    valueRef.current = '';
+    labelAnimate.value = false;
+    setLabelStatus(false);
+    setShowClear(false);
+    props.onClear?.();
   };
 
-  const handleEndEditingTextInput = (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
-    setLabelStatus(!!e.nativeEvent.text);
-    props.onEndEditing?.(e);
-  };
+  const handleOnPressPassword = () => setShowPassword(!showPassword);
 
   const renderLabel = (
     <View pointerEvents={'none'} style={[styles.labelContainer, props.labelContainerStyle]}>
-      <Animated.Text style={[styles.labelContent, labelStatus && styles.labelContentFocused, props.labelType === 'animated' ? labelStyle : styles.blockLabel, props.labelStyle]}>
-        {props.label}
+      <Animated.Text style={[styles.labelContent, labelStatus && styles.labelContentFocused, labelType === 'animated' ? labelStyle : styles.blockLabel, props.labelStyle]}>
+        {t(props.label as string)}
       </Animated.Text>
     </View>
   );
 
   const renderEraseIcon = (
-    <TouchableOpacity onPress={() => props.onChangeText?.('')} style={[styles.clearIconButton, props.labelType === 'hidden' && styles.iconContainerBlock]}>
-      <AppIcon type="feather" name="clear" color={projectColors.grey} size={10} />
+    <TouchableOpacity onPress={handleClearValue} style={[styles.clearIconButton, labelType === 'hidden' && styles.iconContainerBlock]}>
+      <AppIcon type="materialCommunity" name="close" color={iconColor} size={iconSize} />
     </TouchableOpacity>
   );
 
   const renderIcon = (
     <TouchableOpacity
       onPress={props.onPressIcon}
-      style={[styles.iconContainer, props.iconPosition === 'left' && styles.iconContainerLeft, props.labelType === 'hidden' && styles.iconContainerBlock, props.iconContainerStyle]}>
-      <AppIcon type={props.iconType} color={props.iconColor} size={props.iconSize} />
+      style={[styles.iconContainer, iconPosition === 'left' && styles.iconContainerLeft, labelType === 'hidden' && styles.iconContainerBlock, props.iconContainerStyle]}>
+      <AppIcon type={props.iconType} name={props.iconName} color={iconColor} size={iconSize} />
     </TouchableOpacity>
   );
 
-  // const renderSpinner = <Lottie source={'Spinner'} style={styles.spinnerIconContainer} playerStyle={styles.spinnerIcon} />;
+  const renderPasswordIcon = (
+    <TouchableOpacity onPress={handleOnPressPassword} style={[styles.iconContainer, labelType === 'hidden' && styles.iconContainerBlock, props.iconContainerStyle]}>
+      <AppIcon type="feather" name={showPassword ? 'eye-off' : 'eye'} color={iconColor} size={iconSize} />
+    </TouchableOpacity>
+  );
+
+  const renderSpinner = <ActivityIndicator style={styles.spinnerIconContainer} />;
 
   return (
-    <TouchableOpacity activeOpacity={1} onPress={focus} style={[getInputStyle(props), props.loading && styles.inputContainerDisable, props.style]}>
-      {props.labelType !== 'hidden' && props.label && renderLabel}
-      {props.iconName && props.iconPosition === 'left' && renderIcon}
-      <TextInput
-        {...props}
-        ref={inputRef}
-        onFocus={handleFocusTextInput}
-        onEndEditing={handleEndEditingTextInput}
-        placeholder={props.labelType !== 'animated' ? props.placeholder : undefined}
-        style={[styles.inputContent, props.style]}
-        textAlignVertical={props.multiline ? 'top' : 'center'}
-        editable={props.editable && !props.loading}
-      />
-      {props.iconName && props.iconPosition === 'right' && !props.clearable && !props.loading && renderIcon}
-      {!props.loading && props.clearable && props.value && renderEraseIcon}
-      {/* {props.loading && renderSpinner} */}
-    </TouchableOpacity>
+    <>
+      <Pressable onPress={focus} style={[getInputStyle(props), props.loading && styles.inputContainerDisable, props.style]}>
+        {labelType !== 'hidden' && props.label && renderLabel}
+        {props.iconName && iconPosition === 'left' && renderIcon}
+        <TextInput
+          {...props}
+          ref={inputRef}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onEndEditing={handleOnEndEditing}
+          onChangeText={handleOnChangeText}
+          placeholder={labelType !== 'animated' ? props.placeholder : undefined}
+          style={[styles.inputContent, props.style]}
+          textAlignVertical={props.multiline ? 'top' : 'center'}
+          editable={editable && !props.loading}
+          secureTextEntry={props.secureTextEntry}
+          keyboardType={props.keyboardType}
+        />
+        {props.iconName && iconPosition === 'right' && !props.loading && renderIcon}
+        {!props.iconName && props.textFormat === 'password' && renderPasswordIcon}
+        {!props.loading && props.clearable && showClear && renderEraseIcon}
+        {props.loading && renderSpinner}
+      </Pressable>
+      <TextInput readOnly ref={errorRef} style={[styles.errorText]} />
+    </>
   );
 });
 
