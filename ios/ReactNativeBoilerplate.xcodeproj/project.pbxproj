@@ -12,6 +12,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		245B221A6EC54A15AD8C7DED /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD2D849C25C451E92758A34 /* DMSans-Regular.ttf */; };
+		2C69B4A4F7A0461892A32E87 /* DMSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B743BD14499496D88822EFE /* DMSans-Italic.ttf */; };
+		51D7B364632642C3960176D0 /* DMSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 278D7C255029461587252100 /* DMSans-MediumItalic.ttf */; };
+		55CA4F0A866247C996FAAB60 /* DMSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6ABBA0B9D807440F832574E9 /* DMSans-BoldItalic.ttf */; };
+		671CA28688C746CCBA9149E3 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 046A8762D4E4441A97CA686D /* DMSans-Bold.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-ReactNativeBoilerplate-ReactNativeBoilerplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ReactNativeBoilerplate-ReactNativeBoilerplateTests.a */; };
 		7E5C314E2C58DAEA006A4C12 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C313B2C58DAEA006A4C12 /* Fontisto.ttf */; };
 		7E5C314F2C58DAEA006A4C12 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C313C2C58DAEA006A4C12 /* Octicons.ttf */; };
@@ -34,6 +39,7 @@
 		7E5C31602C58DAEA006A4C12 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C314D2C58DAEA006A4C12 /* MaterialIcons.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E6A1E2E3BB693145356ABE5D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 56D0C5343E0FEBDDD35BA815 /* PrivacyInfo.xcprivacy */; };
+		EA5F64BF99DE49F1B44BFD2E /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7286A98640414467A13B9B39 /* DMSans-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,7 @@
 		00E356EE1AD99517003FC87E /* ReactNativeBoilerplateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactNativeBoilerplateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ReactNativeBoilerplateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeBoilerplateTests.m; sourceTree = "<group>"; };
+		046A8762D4E4441A97CA686D /* DMSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Bold.ttf"; path = "../src/assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ReactNativeBoilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactNativeBoilerplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ReactNativeBoilerplate/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ReactNativeBoilerplate/AppDelegate.mm; sourceTree = "<group>"; };
@@ -57,11 +64,16 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ReactNativeBoilerplate/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ReactNativeBoilerplate/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ReactNativeBoilerplate-ReactNativeBoilerplateTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBoilerplate-ReactNativeBoilerplateTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		278D7C255029461587252100 /* DMSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-MediumItalic.ttf"; path = "../src/assets/fonts/DMSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-ReactNativeBoilerplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBoilerplate.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBoilerplate/Pods-ReactNativeBoilerplate.debug.xcconfig"; sourceTree = "<group>"; };
 		56D0C5343E0FEBDDD35BA815 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ReactNativeBoilerplate/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-ReactNativeBoilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBoilerplate.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBoilerplate/Pods-ReactNativeBoilerplate.release.xcconfig"; sourceTree = "<group>"; };
+		5B743BD14499496D88822EFE /* DMSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Italic.ttf"; path = "../src/assets/fonts/DMSans-Italic.ttf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ReactNativeBoilerplate-ReactNativeBoilerplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBoilerplate-ReactNativeBoilerplateTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBoilerplate-ReactNativeBoilerplateTests/Pods-ReactNativeBoilerplate-ReactNativeBoilerplateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ReactNativeBoilerplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBoilerplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ABBA0B9D807440F832574E9 /* DMSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-BoldItalic.ttf"; path = "../src/assets/fonts/DMSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		6CD2D849C25C451E92758A34 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Regular.ttf"; path = "../src/assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; };
+		7286A98640414467A13B9B39 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Medium.ttf"; path = "../src/assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; };
 		7E5C31392C57C245006A4C12 /* ReactNativeBoilerplate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ReactNativeBoilerplate.entitlements; path = ReactNativeBoilerplate/ReactNativeBoilerplate.entitlements; sourceTree = "<group>"; };
 		7E5C313B2C58DAEA006A4C12 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		7E5C313C2C58DAEA006A4C12 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
@@ -150,6 +162,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7A07572DDBDB4E478D5C3842 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				046A8762D4E4441A97CA686D /* DMSans-Bold.ttf */,
+				6ABBA0B9D807440F832574E9 /* DMSans-BoldItalic.ttf */,
+				5B743BD14499496D88822EFE /* DMSans-Italic.ttf */,
+				7286A98640414467A13B9B39 /* DMSans-Medium.ttf */,
+				278D7C255029461587252100 /* DMSans-MediumItalic.ttf */,
+				6CD2D849C25C451E92758A34 /* DMSans-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		7E5C313A2C58DAEA006A4C12 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +221,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				7A07572DDBDB4E478D5C3842 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -337,6 +364,12 @@
 				7E5C315E2C58DAEA006A4C12 /* SimpleLineIcons.ttf in Resources */,
 				7E5C315B2C58DAEA006A4C12 /* Zocial.ttf in Resources */,
 				E6A1E2E3BB693145356ABE5D /* PrivacyInfo.xcprivacy in Resources */,
+				671CA28688C746CCBA9149E3 /* DMSans-Bold.ttf in Resources */,
+				55CA4F0A866247C996FAAB60 /* DMSans-BoldItalic.ttf in Resources */,
+				2C69B4A4F7A0461892A32E87 /* DMSans-Italic.ttf in Resources */,
+				EA5F64BF99DE49F1B44BFD2E /* DMSans-Medium.ttf in Resources */,
+				51D7B364632642C3960176D0 /* DMSans-MediumItalic.ttf in Resources */,
+				245B221A6EC54A15AD8C7DED /* DMSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +545,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = ReactNativeBoilerplateTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -536,7 +569,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = ReactNativeBoilerplateTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -659,7 +692,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD = "";
 				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -681,11 +714,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -738,7 +767,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD = "";
 				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -759,11 +788,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

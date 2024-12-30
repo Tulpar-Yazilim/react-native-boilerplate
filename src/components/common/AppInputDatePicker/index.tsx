@@ -1,7 +1,7 @@
 import React, {memo, useCallback, useEffect, useRef, useState} from 'react';
 import {View} from 'react-native';
 
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import {useThemeColors} from '@/hooks';
 
@@ -24,7 +24,7 @@ const AppInputDatePicker = (props: AppInputDatePickerProps) => {
   const handleOnConfirm = useCallback((_date: Date) => {
     props.onConfirm?.(_date);
     setVisible(false);
-    inputRef.current?.setValue?.(moment(new Date(_date)).format('DD.MM.YYYY'));
+    inputRef.current?.setValue?.(dayjs(new Date(_date)).format('DD.MM.YYYY'));
   }, []);
 
   const handleOnCancel = useCallback(() => {

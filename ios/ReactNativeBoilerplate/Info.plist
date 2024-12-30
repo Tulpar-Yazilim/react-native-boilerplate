@@ -73,6 +73,12 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
+		<string>DMSans-Bold.ttf</string>
+		<string>DMSans-BoldItalic.ttf</string>
+		<string>DMSans-Italic.ttf</string>
+		<string>DMSans-Medium.ttf</string>
+		<string>DMSans-MediumItalic.ttf</string>
+		<string>DMSans-Regular.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

@@ -17,9 +17,9 @@ import ZocialIcon from 'react-native-vector-icons/Zocial';
 
 import {widthPixel} from '@/helpers';
 
-import {AppIconType} from './type';
+import {AppIconType, IconTypes} from './type';
 
-const getIconType = (type: string) => {
+const getIconType = (type: keyof typeof IconTypes) => {
   switch (type) {
     case 'zocial':
       return ZocialIcon;
@@ -53,7 +53,6 @@ const getIconType = (type: string) => {
       return FontistoIcon;
   }
 };
-
 const AppIcon = (props: AppIconType) => {
   const {type, name, size, ...rest} = props;
   const IconComponent = getIconType(type);

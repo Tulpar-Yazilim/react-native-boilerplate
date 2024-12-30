@@ -17,7 +17,6 @@ const initLocale = async (langauge: string = 'tr') => {
   i18n
     .use(initReactI18next)
     .init({
-      compatibilityJSON: 'v3',
       fallbackLng: 'tr',
       initImmediate: false,
       interpolation: {

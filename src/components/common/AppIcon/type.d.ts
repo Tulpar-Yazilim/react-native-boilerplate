@@ -1,5 +1,7 @@
 import {ColorValue, StyleProp, TextStyle} from 'react-native';
 
+import {IconProps} from 'react-native-vector-icons/Icon';
+
 export const IconTypes = {
   zocial: 'zocial',
   octicon: 'octicon',
@@ -23,4 +25,4 @@ export type AppIconType = {
   color?: ColorValue;
   size?: number;
   style?: StyleProp<TextStyle>;
-} & IconProp;
+} & IconProps;

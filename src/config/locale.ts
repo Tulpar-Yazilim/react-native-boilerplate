@@ -1,12 +1,12 @@
-import 'moment/locale/tr';
-import moment from 'moment';
+import 'dayjs/locale/tr';
+import dayjs from 'dayjs';
 import {LocaleConfig} from 'react-native-calendars';
 
 import {initLocale} from '@/i18n';
 
 const locale = (language = 'tr') => {
   initLocale(language || 'tr');
-  moment.locale(language || 'tr');
+  dayjs.locale(language || 'tr');
   LocaleConfig.locales.tr = {
     dayNames: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
     dayNamesShort: ['PZR', 'PZT', 'SAL', 'ÇAR', 'PER', 'CUM', 'CTS'],
