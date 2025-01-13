@@ -11,12 +11,12 @@ import tseslint from 'typescript-eslint';
 
 export default [
   {files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}']},
-  {languageOptions: {globals: globals.es2021, parser: typescriptParser}},
+  {languageOptions: {globals: globals.es2025, parser: typescriptParser}},
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  {
-    ignores: ['**/*/*.js', '.storybook/', '*.stories.@(ts|tsx|js|jsx|mjs|cjs)', '*.js', '*.svg', '*.json', '*.png', 'package.json', 'package-lock.json', 'yarn.lock'],
+  ...{
+    ignores: ['.storybook/', '*.stories.@(ts|tsx|js|jsx|mjs|cjs)', '*.js', '*.svg', '*.json', '*.png', 'package.json', 'package-lock.json', 'yarn.lock'],
     plugins: {
       '@typescript-eslint': typescriptEslint,
       import: importPlugin,
@@ -29,6 +29,8 @@ export default [
       '@typescript-eslint/ban-ts-comment': 2,
       '@typescript-eslint/explicit-module-boundary-types': 0,
       '@typescript-eslint/indent': 0,
+      '@typescript-eslint/no-var-requires': 0,
+      '@typescript-eslint/no-require-imports': 0,
       '@typescript-eslint/no-empty-function': 0,
       '@typescript-eslint/no-empty-interface': 0,
       '@typescript-eslint/no-explicit-any': ['error'],
@@ -54,7 +56,7 @@ export default [
       'import/no-cycle': 2,
       'import/no-deprecated': 0,
       'import/no-duplicates': 2,
-      'import/no-extraneous-dependencies': 'off',
+      'import/no-extraneous-dependencies': 0,
       'import/no-named-as-default': 0,
       'import/no-unused-modules': 0,
       'import/no-useless-path-segments': 2,
@@ -83,8 +85,9 @@ export default [
       ],
       'import/prefer-default-export': 0,
       'no-nested-ternary': 2,
-      'no-shadow': 'off',
-      'no-undef': 'off',
+      'no-shadow': 0,
+      'no-undef': 0,
+      'no-var-requires': 0,
       'prefer-destructuring': 2,
       quotes: [
         'error',

@@ -1,5 +1,7 @@
 const obfuscatingTransformer = require('react-native-obfuscator');
-
+const filter = filename => {
+  return filename.startsWith('src');
+};
 module.exports = obfuscatingTransformer({
   obfuscatorOptions: {
     compact: true, // default true
@@ -30,5 +32,6 @@ module.exports = obfuscatingTransformer({
   upstreamTransformer: require('metro-react-native-babel-transformer'),
   emitObfuscatedFiles: false,
   enableInDevelopment: true,
+  filter: filter,
   trace: true,
 });
