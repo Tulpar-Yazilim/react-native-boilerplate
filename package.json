@@ -63,7 +63,6 @@
     "react-native": "0.77.0",
     "react-native-avoid-softinput": "^7.0.0",
     "react-native-calendars": "^1.1307.0",
-    "react-native-config": "^1.5.3",
     "react-native-device-info": "^14.0.2",
     "react-native-dotenv": "^3.4.11",
     "react-native-gesture-handler": "^2.21.2",

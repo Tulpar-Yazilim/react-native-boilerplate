@@ -11,9 +11,11 @@ import RenderHtml, {defaultSystemFonts, HTMLContentModel, HTMLElementModel, Mixe
 
 import {fontFamily} from '@/assets';
 
-import {screenWidth} from './size-helper';
+import {fontPixel, screenWidth} from './size-helper';
 import {LocalNotificationType} from '../utils/infrastructure/enums';
-import {Coordinates, ImagePickerResultType, ImageResizeResultType, ImageType, LocalNotificationParams} from '../utils/infrastructure/types';
+import {Coordinates, ImagePickerResultType, ImageResizeResultType, ImageType, LocalNotificationParams, ScreenType} from '../utils/infrastructure/types';
+import {i18n} from '@/i18n/i18';
+import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
 const customHTMLElementModels = {
   font: HTMLElementModel.fromCustomModel({
@@ -229,6 +231,28 @@ const cancelLocalNotification = async (localNotificationId: string) => {
 
 const convertToCurrency = (amount: number | string, currency = '₺') => `${Number.parseFloat(amount.toString()).toFixed(2)} ${currency}`;
 
+const createNavigationOptions = (props: ScreenType, extraOptions?: NativeStackNavigationOptions) => {
+  const extraParams = extraOptions ?? {};
+  const {title, headerShown} = props;
+  const options = {
+    headerStyle: {},
+    headerTitle: i18n?.isInitialized ? i18n?.t(title as string) : '',
+    headerTruncatedBackTitle: '',
+    headerBackImageStyle: {},
+    headerBackTitleStyle: {
+      fontSize: fontPixel(15),
+    },
+    headerRightContainerStyle: {},
+    headerLeftContainerStyle: {},
+    headerTitleStyle: {
+      fontSize: fontPixel(15),
+    },
+    ...extraParams,
+  };
+
+  return headerShown ? options : {headerShown: false};
+};
+
 export {
   HtmlRender,
   base64,
@@ -245,4 +269,5 @@ export {
   createLocalNotification,
   cancelLocalNotification,
   convertToCurrency,
+  createNavigationOptions,
 };

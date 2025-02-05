@@ -4,16 +4,16 @@ import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {generalStyles, spacing} from '@/assets';
-import {AppButton, AppDynamicForm, AppInput, AppInputDatePicker, AppText} from '@/components';
+import {AppButton, AppDynamicForm, AppInput, AppInputDatePicker, AppPage, AppText, AppView} from '@/components';
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {HomeStackNavigationPropsType} from '@/navigations/stacks';
 import {settingsRedux} from '@/store';
 import {showToast} from '@/helpers';
 
 const HeaderRight = ({language}: {language: string}) => (
-  <View>
+  <AppView>
     <AppText params={{language}}>language</AppText>
-  </View>
+  </AppView>
 );
 
 export function HomeScreen() {
@@ -33,7 +33,7 @@ export function HomeScreen() {
   }, [navigation, language]);
 
   return (
-    <View style={[generalStyles.flex, spacing.p2]}>
+    <AppPage>
       <AppText>hello</AppText>
 
       <View style={[spacing.pt2, spacing.pb2]}>
@@ -75,6 +75,6 @@ export function HomeScreen() {
           ]}
         />
       </View>
-    </View>
+    </AppPage>
   );
 }

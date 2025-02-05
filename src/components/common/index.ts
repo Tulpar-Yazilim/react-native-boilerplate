@@ -7,3 +7,6 @@ export {default as AppInput} from './AppInput';
 export {default as AppDatePicker} from './AppDatePicker';
 export {default as AppInputDatePicker} from './AppInputDatePicker';
 export {default as AppDynamicForm} from './AppDynamicForm';
+export {default as AppView} from './AppView';
+export {default as AppPage} from './AppPage';
+export {default as AppHeader} from './AppHeader';

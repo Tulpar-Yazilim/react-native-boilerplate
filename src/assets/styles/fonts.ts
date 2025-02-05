@@ -13,6 +13,11 @@ export const fontFamily = Object.freeze({
 
 export const fonts = Object.freeze(
   StyleSheet.create({
+    headerTitle: {
+      fontFamily: fontFamily.regular,
+      fontSize: 20,
+      color: projectColors.headerColor,
+    },
     largeTitle: {
       fontFamily: fontFamily.regular,
       fontSize: 34,
