@@ -1,10 +1,13 @@
 import {rootNavigationRef, routes} from '@/navigations';
-import {authRedux, store} from '@/store';
+
 import {CommonActions} from '@react-navigation/native';
 
 import axios, {AxiosError} from 'axios';
 
 import {API_URL} from 'react-native-dotenv';
+
+import * as authRedux from '../store/auth/slice';
+import {store} from '../store';
 
 export const axiosAgent = axios.create({
   baseURL: `${API_URL}`,

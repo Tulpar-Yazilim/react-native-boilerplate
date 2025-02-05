@@ -3,9 +3,8 @@ import React, {memo} from 'react';
 import {useController, useFormContext} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 
-import {AppCheckbox} from '@/components/common';
-
 import type {AppFormCheckboxProps} from './type';
+import AppCheckbox from '../../common/AppCheckbox';
 
 const AppFormCheckbox = (props: AppFormCheckboxProps) => {
   const {t} = useTranslation();

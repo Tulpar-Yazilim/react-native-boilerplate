@@ -14,6 +14,7 @@ import {persistor, settingsRedux, store} from '@/store';
 
 import {generalStyles} from './assets';
 import RootNavigator from './navigations/root';
+import {Toasts} from '@backpackapp-io/react-native-toast';
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();
@@ -49,6 +50,7 @@ export function App() {
         <SafeAreaProvider style={generalStyles.flex}>
           <GestureHandlerRootView style={generalStyles.flex}>
             <MainContainer />
+            <Toasts />
           </GestureHandlerRootView>
         </SafeAreaProvider>
       </PersistGate>

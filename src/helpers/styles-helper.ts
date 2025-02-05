@@ -2,8 +2,9 @@ import {ColorValue, Dimensions, FlexAlignType, FlexStyle, Platform, ViewStyle} f
 
 import DeviceInfo from 'react-native-device-info';
 
-import {fontFamily, projectColors} from '@/assets';
-import {FontWeightType} from '@/utils';
+import {fontFamily} from '../assets/styles/fonts';
+import {projectColors} from '../assets/styles/colors';
+import {FontWeightType} from '../utils/infrastructure';
 
 import {fontPixel, heightPixel, widthPixel} from './size-helper';
 

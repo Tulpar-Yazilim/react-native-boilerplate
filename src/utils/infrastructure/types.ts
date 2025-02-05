@@ -2,6 +2,7 @@
 import React, {FunctionComponent, ReactElement} from 'react';
 
 import {LocalNotificationType} from './enums';
+import {ToastOptions} from '@backpackapp-io/react-native-toast';
 
 export type ScreenType = {
   title?: string;
@@ -45,6 +46,11 @@ export type LocalNotificationParams = {
   message: string;
   scheduleDate?: Date;
 };
+
+export type ToastParams = {
+  message: string;
+  type?: 'success' | 'error' | 'default';
+} & ToastOptions;
 
 export type Nullable<T> = T | null;
 export type Undefined<T> = T | null | undefined;

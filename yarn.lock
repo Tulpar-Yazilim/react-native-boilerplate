@@ -1705,6 +1705,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backpackapp-io/react-native-toast@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "@backpackapp-io/react-native-toast@npm:0.13.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-gesture-handler: ">=2.2.1"
+    react-native-reanimated: ">=2.8.0"
+    react-native-safe-area-context: ">=4.2.4"
+  checksum: 14133efb77c0b9a850a2805c465d0771ff7eb2d613a28c9745be1c05699bab9ddafce22496052b9b0fb30ae6ed56a14a2dcf5c2264bfcd36afdc093ab8614f04
+  languageName: node
+  linkType: hard
+
 "@bam.tech/react-native-image-resizer@npm:^3.0.11":
   version: 3.0.11
   resolution: "@bam.tech/react-native-image-resizer@npm:3.0.11"
@@ -7075,6 +7088,7 @@ __metadata:
     "@babel/preset-env": ^7.25.3
     "@babel/preset-typescript": ^7.26.0
     "@babel/runtime": ^7.25.0
+    "@backpackapp-io/react-native-toast": ^0.13.0
     "@bam.tech/react-native-image-resizer": ^3.0.11
     "@eslint/js": ^9.7.0
     "@notifee/react-native": ^9.1.8

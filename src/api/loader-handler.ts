@@ -1,6 +1,6 @@
 import {isFulfilled, isPending, isRejected, isRejectedWithValue, Middleware} from '@reduxjs/toolkit';
 
-import {settingsRedux} from '@/store';
+import * as settingsRedux from '../store/settings/slice';
 
 export const rtkQueryLoaderHandler: Middleware =
   ({dispatch, getState}) =>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import routes from '@/navigations/routes';
+import routes from '../../routes';
 import {HomeScreen} from '@/pages';
 
 import {HomeStackNavigationProps} from './types';

@@ -41,6 +41,7 @@
     "storybook:build": "build-storybook -c .storybook"
   },
   "dependencies": {
+    "@backpackapp-io/react-native-toast": "^0.13.0",
     "@bam.tech/react-native-image-resizer": "^3.0.11",
     "@notifee/react-native": "^9.1.8",
     "@react-native-community/netinfo": "^11.4.1",

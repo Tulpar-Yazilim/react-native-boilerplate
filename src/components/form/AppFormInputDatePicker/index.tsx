@@ -4,7 +4,7 @@ import {NativeSyntheticEvent, TextInputFocusEventData} from 'react-native';
 import {useController, useFormContext} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 
-import {AppInputDatePicker} from '@/components/common';
+import AppInputDatePicker from '../../common/AppInputDatePicker';
 
 import type {AppFormInputDatePickerProps} from './type';
 

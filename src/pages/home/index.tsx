@@ -8,6 +8,7 @@ import {AppButton, AppDynamicForm, AppInput, AppInputDatePicker, AppText} from '
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {HomeStackNavigationPropsType} from '@/navigations/stacks';
 import {settingsRedux} from '@/store';
+import {showToast} from '@/utils';
 
 const HeaderRight = ({language}: {language: string}) => (
   <View>
@@ -22,6 +23,7 @@ export function HomeScreen() {
 
   const onChangeLang = (_language: string) => {
     dispatch(settingsRedux.changeLanguage(_language));
+    showToast({message: `Language Changed to ${_language}`, type: 'success'});
   };
 
   useLayoutEffect(() => {

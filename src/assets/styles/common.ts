@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {tabbarHeight} from '@/helpers';
+import {tabbarHeight} from '../../helpers/styles-helper';
 
 import {projectColors} from './colors';
 
