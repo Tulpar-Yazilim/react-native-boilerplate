@@ -1,20 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 import {i18next} from '@/i18n';
-
-interface ISettingsState {
-  language: string;
-  theme: 'light' | 'dark';
-  appLoader: boolean;
-  bottomTabDisplay: boolean;
-}
-
-const initialState: ISettingsState = {
-  appLoader: false,
-  bottomTabDisplay: true,
-  language: 'tr',
-  theme: 'light',
-};
+import {initialState} from './infrastructure';
 
 const settingsSlice = createSlice({
   initialState,

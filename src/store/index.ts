@@ -3,10 +3,10 @@ import {setupListeners} from '@reduxjs/toolkit/query';
 import {combineReducers} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
 
-import {baseApi, rtkQueryErrorHandler, rtkQueryLoaderHandler} from '@/api';
+import {baseApi, rtkQueryLoaderHandler} from '@/api';
 
-import * as authRedux from './auth';
-import * as settingsRedux from './settings';
+import * as authRedux from './auth/slice';
+import * as settingsRedux from './settings/slice';
 import MMKVStorage from '../utils/storage';
 
 export {authRedux, settingsRedux};
@@ -38,7 +38,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat(baseApi.middleware, rtkQueryErrorHandler, rtkQueryLoaderHandler),
+    }).concat(baseApi.middleware, rtkQueryLoaderHandler),
   reducer: persistedReducer,
 });
 

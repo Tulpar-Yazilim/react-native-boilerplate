@@ -1,9 +1,9 @@
-import {baseApi as api} from './base-api';
+import {baseApi} from './base-api';
 
-const injectedRtkApi = api.injectEndpoints({
+const injectedRtkApi = baseApi.injectEndpoints({
   endpoints: build => ({
     getCharacters: build.query({
-      query: (page = 1, count = 10) => `character/?page=${page}&count=${count}`,
+      query: (page = 1, count = 10) => ({url: `character/?page=${page}&count=${count}`, method: 'GET'}),
     }),
   }),
 });

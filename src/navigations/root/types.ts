@@ -5,6 +5,7 @@ import routes from '@/navigations/routes';
 import {Keyof} from '@/utils';
 
 export type RootStackNavigationProps = {
+  [routes.LOGIN_SCREEN]: undefined;
   [routes.HOME_ROOT]: undefined;
   [routes.MAIN_TABS]: undefined;
 };

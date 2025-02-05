@@ -1,23 +1,44 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {API_URL} from 'react-native-dotenv';
+import {AxiosError, AxiosRequestConfig} from 'axios';
 
-import type {RootState} from '../store';
+import {BaseQueryFn, createApi} from '@reduxjs/toolkit/query/react';
+import {axiosAgent} from './axios';
 
-const baseApi = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
-    prepareHeaders: (headers, {getState}) => {
-      const token = (getState() as RootState)?.auth?.token;
-      if (token) {
-        headers.set('Authorization', 'Bearer ' + token);
-      }
-      headers.set('Content-Type', 'application/json');
-      headers.set('Accept', 'application/json');
-      return headers;
+const axiosBaseQuery =
+  (): BaseQueryFn<
+    {
+      url: string;
+      method?: AxiosRequestConfig['method'];
+      data?: AxiosRequestConfig['data'];
+      params?: AxiosRequestConfig['params'];
+      headers?: AxiosRequestConfig['headers'];
     },
-  }),
-  endpoints: () => ({}),
-  reducerPath: 'baseApiReducer',
-});
+    unknown,
+    unknown
+  > =>
+  async ({url, method, data, params, headers}) => {
+    try {
+      const result = await axiosAgent({
+        url,
+        method,
+        data,
+        params,
+        headers,
+      });
+      return {data: result.data};
+    } catch (axiosError) {
+      const err = axiosError as AxiosError;
+      return {
+        error: {
+          status: err.response?.status,
+          data: err.response?.data || err.message,
+        },
+      };
+    }
+  };
 
-export {baseApi};
+export const baseApi = createApi({
+  reducerPath: 'baseApi',
+  baseQuery: axiosBaseQuery(),
+  keepUnusedDataFor: 30,
+  endpoints: () => ({}),
+});

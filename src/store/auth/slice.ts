@@ -1,14 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-
-export interface IAuthState {
-  user?: never;
-  token?: string;
-}
-
-export const initialState: IAuthState = {
-  token: '',
-  user: undefined,
-};
+import {initialState} from './infrastructure';
 
 const authSlice = createSlice({
   initialState,
@@ -19,7 +10,7 @@ const authSlice = createSlice({
     },
     logout: state => {
       state.user = undefined;
-      state.token = '';
+      state.token = undefined;
     },
   },
 });
