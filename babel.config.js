@@ -11,7 +11,14 @@ module.exports = {
         extensions: ['.js', '.json'],
       },
     ],
-    'module:react-native-dotenv',
+    [
+      'module:react-native-dotenv',
+      {
+        envName: 'APP_ENV',
+        moduleName: 'react-native-dotenv',
+        path: '.env',
+      },
+    ],
     'react-native-reanimated/plugin',
   ],
   env: {

@@ -23,7 +23,11 @@ export const BottomTabNavigation = () => {
             headerShown: false,
             tabBarLabel: 'Home',
             tabBarIcon: ({focused}) =>
-              focused ? <AppIcon type="feather" name="home" size={tabIconSize} color={tabIconSelectedColor} /> : <AppIcon type="feather" name="home" size={tabIconSize} color={tabIconColor} />,
+              focused ? (
+                <AppIcon type="fontAwesome" name="house" size={tabIconSize} color={tabIconSelectedColor} iconStyle="solid" />
+              ) : (
+                <AppIcon type="fontAwesome" name="house" size={tabIconSize} color={tabIconColor} iconStyle="solid" />
+              ),
           }}
           name={routes.HOME_ROOT}
           component={HomeStack}

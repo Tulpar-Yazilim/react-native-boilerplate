@@ -14,7 +14,7 @@ const AppFormInputDatePicker = (props: AppFormInputDatePickerProps) => {
   const {formState} = formContext;
 
   const {field} = useController({
-    name: props.fieldName as string,
+    name: props.fieldName,
     rules: {
       required: props.required && {
         value: props.required,

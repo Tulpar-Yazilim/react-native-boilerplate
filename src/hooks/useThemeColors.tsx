@@ -1,13 +1,14 @@
 import {useColorScheme} from 'react-native';
 
 import {themeColors} from '@/assets';
-import {useAppSelector} from '@/hooks';
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
+import {RootState} from '@/store';
 
-const useThemeColors = () => {
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const useThemeColors = () => {
   const phoneTheme = useColorScheme();
   const theme = useAppSelector(state => state.settings.theme);
   const colors = themeColors[theme || phoneTheme];
   return colors;
 };
-
-export default useThemeColors;

@@ -115,20 +115,26 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
     }
   }, [props.labelStatus]);
 
-  const handleOnChangeText = useCallback((text: string) => {
-    props.onChangeText?.(text);
-  }, []);
+  const handleOnChangeText = useCallback(
+    (text: string) => {
+      props.onChangeText?.(text);
+    },
+    [props.onChangeText],
+  );
 
-  const handleOnBlur = useCallback((e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    props.onBlur?.(e);
-  }, []);
+  const handleOnBlur = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      props.onBlur?.(e);
+    },
+    [props.onBlur],
+  );
 
   const handleOnFocus = useCallback(
     (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setLabelStatus(true);
       props.onFocus?.(e);
     },
-    [labelStatus],
+    [labelStatus, props.onFocus],
   );
 
   const handleOnEndEditing = useCallback(
@@ -162,7 +168,7 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
 
   const renderEraseIcon = (
     <TouchableOpacity onPress={handleClearValue} style={[styles.clearIconButton, labelType === 'hidden' && styles.iconContainerBlock]}>
-      <AppIcon type="materialCommunity" name="close" color={iconColor} size={iconSize} />
+      <AppIcon type="feather" name="close" color={iconColor} size={iconSize} />
     </TouchableOpacity>
   );
 
@@ -170,7 +176,7 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
     <TouchableOpacity
       onPress={props.onPressIcon}
       style={[styles.iconContainer, iconPosition === 'left' && styles.iconContainerLeft, labelType === 'hidden' && styles.iconContainerBlock, props.iconContainerStyle]}>
-      <AppIcon type={props.iconType} name={props.iconName} color={iconColor} size={iconSize} />
+      <AppIcon type={props.iconType!} name={props.iconName!} color={iconColor} size={iconSize} />
     </TouchableOpacity>
   );
 

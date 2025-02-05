@@ -1,7 +1,8 @@
-import {useAppSelector} from './index';
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
+import {RootState} from '@/store';
 
-const useThemeMode = () => {
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const useThemeMode = () => {
   return useAppSelector(state => state.settings.theme);
 };
-
-export default useThemeMode;

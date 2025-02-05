@@ -1,13 +1,11 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import Config from 'react-native-config';
+import {API_URL} from 'react-native-dotenv';
 
 import type {RootState} from '../store';
 
-const baseURL = Config.API_URL;
-
 const baseApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: baseURL,
+    baseUrl: API_URL,
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as RootState)?.auth?.token;
       if (token) {

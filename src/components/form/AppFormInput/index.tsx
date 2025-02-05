@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useCallback} from 'react';
 import {NativeSyntheticEvent, TextInputFocusEventData} from 'react-native';
 
 import {useController, useFormContext} from 'react-hook-form';
@@ -34,7 +34,7 @@ const AppFormInput = (props: AppFormInputProps) => {
   }
 
   const {field} = useController({
-    name: props.fieldName as string,
+    name: props.fieldName,
     rules: {
       required: props.required && {
         value: props.required,
@@ -79,15 +79,21 @@ const AppFormInput = (props: AppFormInputProps) => {
   const hasError = Boolean(formState.errors?.[props.fieldName]) || props.error;
   const errorMessage = (formState.errors?.[props.fieldName]?.message || props.errorMessage || '') as string;
 
-  const handleOnChangeText = (text: string) => {
-    field.onChange(text);
-    props.onChangeText?.(text);
-  };
+  const handleOnChangeText = useCallback(
+    (text: string) => {
+      field.onChange(text);
+      props.onChangeText?.(text);
+    },
+    [field.onChange, props.onChangeText],
+  );
 
-  const handleOnBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    field.onBlur();
-    props.onBlur?.(e);
-  };
+  const handleOnBlur = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      field.onBlur();
+      props.onBlur?.(e);
+    },
+    [field.onBlur, props.onBlur],
+  );
 
   return <AppInput {...props} error={hasError} errorMessage={errorMessage} onBlur={handleOnBlur} onChangeText={handleOnChangeText} />;
 };

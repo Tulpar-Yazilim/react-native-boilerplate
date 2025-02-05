@@ -2,7 +2,7 @@ import {useMemo} from 'react';
 
 import {useTranslation} from 'react-i18next';
 
-const useTranslate = (text = '', params = {}) => {
+export const useTranslate = (text = '', params = {}) => {
   const {t, i18n} = useTranslation();
   return useMemo(() => {
     try {
@@ -12,5 +12,3 @@ const useTranslate = (text = '', params = {}) => {
     }
   }, [t, i18n, text, params]);
 };
-
-export default useTranslate;

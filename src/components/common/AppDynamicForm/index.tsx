@@ -41,7 +41,6 @@ const AppDynamicForm = (props: AppDynamicFormProps) => {
       case 'checkbox': {
         return (
           <AppFormCheckbox
-            {...field}
             checked={field.value as boolean}
             disabled={!editable}
             fieldName={field.name}
@@ -55,8 +54,6 @@ const AppDynamicForm = (props: AppDynamicFormProps) => {
         const fieldData = field as AppDynamicFormDateFieldModel;
         return (
           <AppFormInputDatePicker
-            {...fieldData}
-            value={fieldData.value as string}
             editable={editable}
             fieldName={fieldData.name}
             label={fieldData.title}
@@ -71,8 +68,6 @@ const AppDynamicForm = (props: AppDynamicFormProps) => {
         const fieldData = field as AppDynamicFormPasswordFieldModel;
         return (
           <AppFormInput
-            {...fieldData}
-            value={fieldData.value as string}
             editable={editable}
             fieldName={fieldData.name}
             label={fieldData.title}
@@ -99,8 +94,6 @@ const AppDynamicForm = (props: AppDynamicFormProps) => {
       case 'email': {
         return (
           <AppFormInput
-            {...field}
-            value={field.value as string}
             editable={editable}
             fieldName={field.name}
             label={field.title}
@@ -129,8 +122,6 @@ const AppDynamicForm = (props: AppDynamicFormProps) => {
         const fieldData = field as AppDynamicFormTextFieldModel;
         return (
           <AppFormInput
-            {...fieldData}
-            value={fieldData.value as string}
             editable={editable}
             fieldName={fieldData.name}
             label={fieldData.title}

@@ -4,7 +4,7 @@ import {Platform} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {AvoidSoftInput} from 'react-native-avoid-softinput';
 
-const useKeyboardAvoiding = (enabled = true) => {
+export const useKeyboardAvoiding = (enabled = true) => {
   const onFocusEffect = useCallback(() => {
     AvoidSoftInput.setShouldMimicIOSBehavior(true);
     AvoidSoftInput.setEnabled(true);
@@ -22,5 +22,3 @@ const useKeyboardAvoiding = (enabled = true) => {
     Platform.OS === 'ios' && enabled && onFocusEffect();
   });
 };
-
-export default useKeyboardAvoiding;

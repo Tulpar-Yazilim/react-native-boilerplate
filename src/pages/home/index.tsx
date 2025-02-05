@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {generalStyles, spacing} from '@/assets';
-import {AppButton, AppDynamicForm, AppInputDatePicker, AppText} from '@/components';
+import {AppButton, AppDynamicForm, AppInput, AppInputDatePicker, AppText} from '@/components';
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {HomeStackNavigationPropsType} from '@/navigations/stacks';
 import {settingsRedux} from '@/store';
@@ -38,6 +38,9 @@ export function HomeScreen() {
         <AppButton text="tr" onPress={() => onChangeLang('tr')} />
         <AppButton style={{marginTop: 8}} text="en" onPress={() => onChangeLang('en')} />
 
+        <View style={[spacing.pt2]}>
+          <AppInput label="Ad" />
+        </View>
         <AppInputDatePicker style={[spacing.pt2]} />
       </View>
 

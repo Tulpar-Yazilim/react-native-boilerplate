@@ -49,8 +49,8 @@ const AppInputDatePicker = (props: AppInputDatePickerProps) => {
         onPress={handleOnPress}
         onClear={handleOnClear}
         readOnly
-        iconType="feather"
-        iconName="calendar"
+        iconType="material"
+        iconName="calendar-blank-outline"
         iconPosition="right"
         iconSize={22}
         iconColor={colors.black}
