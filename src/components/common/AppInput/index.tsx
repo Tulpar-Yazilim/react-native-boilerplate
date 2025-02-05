@@ -1,5 +1,5 @@
 import React, {forwardRef, memo, PropsWithChildren, useCallback, useEffect, useImperativeHandle, useRef, useState} from 'react';
-import {ActivityIndicator, NativeSyntheticEvent, Pressable, TextInput, TextInputEndEditingEventData, TextInputFocusEventData, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, NativeSyntheticEvent, NativeTouchEvent, Pressable, TextInput, TextInputEndEditingEventData, TextInputFocusEventData, TouchableOpacity, View} from 'react-native';
 
 import {useTranslation} from 'react-i18next';
 import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
@@ -13,7 +13,7 @@ import AppIcon from '../AppIcon';
 
 const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((inProps, ref) => {
   const props = inProps as AppInputProps;
-  const {labelType = 'animated', animationDuration = 150, editable = true, iconPosition = 'right', iconColor = projectColors.grey, iconSize = 16} = props;
+  const {labelType = 'animated', animationDuration = 150, editable = true, iconPosition = 'right', iconColor = projectColors.grey, iconSize = 16, cursorColor = projectColors.black, onPress} = props;
 
   const {t} = useTranslation();
 
@@ -34,6 +34,14 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
   const blur = useCallback(() => {
     inputRef.current?.blur?.();
   }, []);
+
+  const handleOnPress = useCallback(
+    (e: NativeSyntheticEvent<NativeTouchEvent>) => {
+      onPress?.(e);
+      focus();
+    },
+    [onPress],
+  );
 
   const setNativeProps = useCallback((nativeProps: object) => {
     inputRef.current?.setNativeProps?.(nativeProps);
@@ -190,7 +198,7 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
 
   return (
     <>
-      <Pressable onPress={focus} style={[getInputStyle(props), props.loading && styles.inputContainerDisable, props.style]}>
+      <Pressable onPress={handleOnPress} style={[getInputStyle(props), props.loading && styles.inputContainerDisable, props.style]}>
         {labelType !== 'hidden' && props.label && renderLabel}
         {props.iconName && iconPosition === 'left' && renderIcon}
         <TextInput
@@ -202,6 +210,7 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
           onChangeText={handleOnChangeText}
           placeholder={labelType !== 'animated' ? props.placeholder : undefined}
           style={[styles.inputContent, props.style]}
+          cursorColor={cursorColor}
           textAlignVertical={props.multiline ? 'top' : 'center'}
           editable={editable && !props.loading}
           secureTextEntry={props.secureTextEntry}

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderWidth: widthPixel(1),
     borderRadius: widthPixel(10),
     paddingHorizontal: widthPixel(24),
-    maxHeight: heightPixel(180),
+    height: heightPixel(180),
     position: 'relative',
     overflow: 'hidden',
     ...flexBox('row', 'center', 'center'),
@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
   },
   inputContent: {
     ...textFont(16, projectColors.black, 'medium'),
-    padding: 0,
+    height: heightPixel(180),
     flex: 1,
-    height: '100%',
+    paddingHorizontal: 0,
   },
   labelContainer: {
     position: 'absolute',

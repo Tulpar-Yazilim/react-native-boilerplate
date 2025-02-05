@@ -8,7 +8,7 @@ import {AppButton, AppDynamicForm, AppInput, AppInputDatePicker, AppText} from '
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {HomeStackNavigationPropsType} from '@/navigations/stacks';
 import {settingsRedux} from '@/store';
-import {showToast} from '@/utils';
+import {showToast} from '@/helpers';
 
 const HeaderRight = ({language}: {language: string}) => (
   <View>

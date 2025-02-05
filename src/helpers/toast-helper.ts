@@ -1,5 +1,5 @@
 import {toast} from '@backpackapp-io/react-native-toast';
-import {ToastParams} from './infrastructure';
+import {ToastParams} from '../utils/infrastructure';
 import {t} from 'i18next';
 
 export const showToast = (params: ToastParams) => {
