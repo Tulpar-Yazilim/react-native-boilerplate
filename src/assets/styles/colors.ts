@@ -3,6 +3,7 @@ import {ColorValue} from 'react-native';
 export const projectColors = Object.freeze({
   headerBackgroundColor: '#FFFFFFFF' as ColorValue,
   headerColor: '#000000FF' as ColorValue,
+  backgroundColor: '#F3F3F3FF' as ColorValue,
 
   black: '#000000FF' as ColorValue,
   black40: '#00000040' as ColorValue,

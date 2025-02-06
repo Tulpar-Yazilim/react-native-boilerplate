@@ -5,18 +5,27 @@ import Animated from 'react-native-reanimated';
 
 import {AppViewProps} from './type';
 import {generalStyles} from '@/assets';
+import {flexBoxStyle} from './styles';
 
 const AppView: FC<AppViewProps> = ({children, animated, onLayout, backgroundImage, resizeMode, display = true, ...props}) => {
   if (display === false) {
     return <></>;
   }
 
-  const insideStyles = StyleSheet.flatten([props.style, props.flex ? {flex: 1} : {}]);
+  const insideStyles = StyleSheet.flatten([props.style, props.flex ? {flex: (typeof props.flex === 'boolean' ? 1 : props.flex) as number} : {}]);
+
+  const childElement = props.flex ? (
+    <View style={flexBoxStyle({flex: typeof props.flex === 'boolean' ? 1 : (props.flex as number), direction: props.direction, gap: props.gap, justify: props.justify, align: props.align})}>
+      {children}
+    </View>
+  ) : (
+    children
+  );
 
   if (props.onPress) {
     return (
       <Pressable {...props} style={insideStyles}>
-        {children}
+        {childElement}
       </Pressable>
     );
   }
@@ -24,7 +33,7 @@ const AppView: FC<AppViewProps> = ({children, animated, onLayout, backgroundImag
   if (animated) {
     return (
       <Animated.View onLayout={onLayout} style={insideStyles}>
-        {children}
+        {childElement}
       </Animated.View>
     );
   }
@@ -33,10 +42,10 @@ const AppView: FC<AppViewProps> = ({children, animated, onLayout, backgroundImag
     <View onLayout={onLayout} style={insideStyles}>
       {backgroundImage ? (
         <ImageBackground source={{uri: backgroundImage}} resizeMode={resizeMode ?? 'cover'} style={generalStyles.flex}>
-          {children}
+          {childElement}
         </ImageBackground>
       ) : (
-        children
+        childElement
       )}
     </View>
   );

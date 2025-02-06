@@ -31,8 +31,7 @@ local.properties
 *.iml
 *.hprof
 .cxx/
-*.keystore
-!debug.keystore
+/android/.kotlin/*
 
 # node.js
 #

@@ -28,7 +28,7 @@ function AppScreen(props: Readonly<AppPageProps>) {
   const screenCommonStyles = {
     padding: heightPixel(16),
     paddingBottom: heightPixel(tabbarHeight),
-    backgroundColor: !backgroundImage && colors.white,
+    backgroundColor: !backgroundImage && colors.backgroundColor,
     ...generalStyles.flex,
     ...generalStyles.flexGrow,
     ...style,
