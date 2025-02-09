@@ -8,6 +8,7 @@ export type AppViewProps = {
   backgroundImage?: string;
   resizeMode?: ImageResizeMode;
   flex?: number | boolean;
+  row?: boolean;
   flexWrap?: 'wrap' | 'nowrap' | 'wrap-reverse';
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   gap?: number;

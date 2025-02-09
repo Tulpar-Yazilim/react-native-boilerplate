@@ -4,6 +4,9 @@ import {initReactI18next} from 'react-i18next';
 import en from './languages/en';
 import tr from './languages/tr';
 
+import 'dayjs/locale/tr';
+import dayjs from 'dayjs';
+
 const initLocale = async (langauge: string = 'tr') => {
   const resources = {
     en: {
@@ -26,6 +29,7 @@ const initLocale = async (langauge: string = 'tr') => {
       resources,
     })
     .then(async () => {
+      dayjs.locale(langauge);
       await i18n.changeLanguage(langauge);
     });
 };

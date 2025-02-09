@@ -12,15 +12,23 @@ const AppView: FC<AppViewProps> = ({children, animated, onLayout, backgroundImag
     return <></>;
   }
 
-  const insideStyles = StyleSheet.flatten([props.style, props.flex ? {flex: (typeof props.flex === 'boolean' ? 1 : props.flex) as number} : {}]);
+  const insideStyles = StyleSheet.flatten([props.style, props.flex ? {flex: typeof props.flex === 'boolean' ? 1 : props.flex} : {}]);
 
-  const childElement = props.flex ? (
-    <View style={flexBoxStyle({flex: typeof props.flex === 'boolean' ? 1 : (props.flex as number), direction: props.direction, gap: props.gap, justify: props.justify, align: props.align})}>
-      {children}
-    </View>
-  ) : (
-    children
-  );
+  const childElement =
+    props.flex || props.row ? (
+      <View
+        style={flexBoxStyle({
+          flex: typeof props.flex === 'boolean' || props.row ? 1 : props.flex,
+          direction: props.row ? 'row' : props.direction,
+          gap: props.gap,
+          justify: props.justify,
+          align: props.align,
+        })}>
+        {children}
+      </View>
+    ) : (
+      children
+    );
 
   if (props.onPress) {
     return (

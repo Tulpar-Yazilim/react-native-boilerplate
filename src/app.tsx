@@ -7,7 +7,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
-import {linking} from '@/config';
+import {linking, locale} from '@/config';
 import {useAppDispatch, useAppSelector} from '@/hooks';
 import {initLocale} from '@/i18n';
 import {persistor, settingsRedux, store} from '@/store';
@@ -15,6 +15,8 @@ import {persistor, settingsRedux, store} from '@/store';
 import {generalStyles} from './assets';
 import RootNavigator from './navigations/root';
 import {Toasts} from '@backpackapp-io/react-native-toast';
+
+locale();
 
 const MainContainer = () => {
   const dispatch = useAppDispatch();

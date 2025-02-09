@@ -52,8 +52,8 @@ export const createCustomButtonStyle = (props: AppButtonProps): ViewStyle => {
   };
 
   if (props.type === 'bordered') {
-    containerStyle.borderWidth = props.borderWidth;
-    containerStyle.borderColor = props.borderColor;
+    containerStyle.borderWidth = widthPixel(2);
+    containerStyle.borderColor = projectColors.primary;
   }
   if (props.disabled) {
     containerStyle.backgroundColor = projectColors.grey;
@@ -71,19 +71,19 @@ export const createCustomButtonStyle = (props: AppButtonProps): ViewStyle => {
 };
 
 export const createCustomTextStyle = (props: AppButtonProps): TextStyle => {
-  const fontType = props.height !== 'large' ? 'medium' : 'regular';
+  const fontType = props.height === 'large' ? 'bold' : 'regular';
   let textColor = props.textColor ? props.textColor : projectColors.white;
   let textDecorationLine: TextDecorationLine = 'none';
   if (props.type === 'link') {
-    textColor = projectColors.blue;
+    textColor = projectColors.primary;
     textDecorationLine = 'underline';
   } else if (props.type === 'bordered') {
-    textColor = projectColors.red;
+    textColor = projectColors.primary;
   }
   if (props.disabled) {
     textColor = projectColors.black50;
   }
-  const fontSize = props.height === 'large' ? 14 : 16;
+  const fontSize = props.height === 'large' ? 16 : 14;
 
   return {
     ...textFont(fontSize, textColor, fontType),
