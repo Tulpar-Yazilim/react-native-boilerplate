@@ -8,19 +8,19 @@ const axiosBaseQuery =
     {
       url: string;
       method?: AxiosRequestConfig['method'];
-      data?: AxiosRequestConfig['data'];
+      body?: AxiosRequestConfig['data'];
       params?: AxiosRequestConfig['params'];
       headers?: AxiosRequestConfig['headers'];
     },
     unknown,
     unknown
   > =>
-  async ({url, method, data, params, headers}) => {
+  async ({url, method, body, params, headers}) => {
     try {
       const result = await axiosAgent({
         url,
         method,
-        data,
+        data: body,
         params,
         headers,
       });

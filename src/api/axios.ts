@@ -19,7 +19,7 @@ export const axiosAgent = axios.create({
 let cancelRequest = false;
 axiosAgent.interceptors.request.use(
   async config => {
-    if (cancelRequest) return Promise.reject('Request Cancelled');
+    if (cancelRequest) return Promise.reject(new Error('Request Cancelled'));
 
     const token = store.getState()?.auth?.token;
     if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -51,6 +51,8 @@ axiosAgent.interceptors.response.use(
             }),
           );
         }
+
+        return Promise.reject(error);
       },
     };
 
