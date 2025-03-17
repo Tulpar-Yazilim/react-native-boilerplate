@@ -3,7 +3,7 @@ import {t} from 'i18next';
 import {Nullable} from '@/utils';
 
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,16}$/;
-export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 export const strongPasswordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})');
 export const mediumPasswordRegex = new RegExp('^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})');
 export const weakPasswordRegex = new RegExp('^(?=.{6,})');

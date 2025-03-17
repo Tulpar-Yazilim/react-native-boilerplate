@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next';
 
 import type {AppFormCheckboxProps} from './type';
 import AppCheckbox from '../../common/AppCheckbox';
+import styles from './styles';
 
 const AppFormCheckbox = (props: AppFormCheckboxProps) => {
   const {t} = useTranslation();
@@ -29,7 +30,7 @@ const AppFormCheckbox = (props: AppFormCheckboxProps) => {
     props.onChanged?.(value);
   };
 
-  return <AppCheckbox {...props} error={hasError} errorMessage={errorMessage} onChanged={handleOnChanged} />;
+  return <AppCheckbox {...props} checkboxPosition="left" checked={field.value} error={hasError} errorMessage={errorMessage} onChanged={handleOnChanged} style={styles.container} />;
 };
 
 export default memo(AppFormCheckbox);
