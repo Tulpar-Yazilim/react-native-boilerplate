@@ -32,6 +32,7 @@ export type AppButtonProps = {
   iconColor?: ColorValue;
   iconStyle?: StyleProp<ViewStyle>;
   iconPosition?: AppButtonIconPositionType;
+  iconFontStyle?: 'brand' | 'regular' | 'solid';
 
   debounce?: boolean;
 } & PressableProps;

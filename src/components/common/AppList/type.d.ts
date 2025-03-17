@@ -20,6 +20,7 @@ export interface AppListProps<T> extends FlashListProps<T> {
   removeClippedSubviews?: boolean;
   flex?: boolean;
 
+  renderItem: ListRenderItem<T>;
   onEndReached?: () => void;
   onRefresh?: () => void;
   onRefreshData?: () => void | Promise<void>;

@@ -3,10 +3,10 @@ import {ColorValue, StyleProp, ViewStyle} from 'react-native';
 import {AppButtonIconPositionType} from '../AppButton/type';
 import {IconTypes} from '../AppIcon/type';
 
-export type AppDynamicFormFieldType = 'text-box' | 'phone' | 'email' | 'date-picker' | 'password' | 'checkbox';
-export type AppDynamicFormDataType = 'string' | 'number' | 'date' | 'boolean';
+export type AppDynamicFormFieldType = 'text-box' | 'phone' | 'email' | 'date-picker' | 'password' | 'checkbox' | 'select-box';
+export type AppDynamicFormDataType = 'string' | 'number' | 'date' | 'boolean' | 'phone';
 
-export type AppDynamicFormFieldModel = AppDynamicFormFieldModelBase | AppDynamicFormPasswordFieldModel | AppDynamicFormDateFieldModel;
+export type AppDynamicFormFieldModel = AppDynamicFormFieldModelBase | AppDynamicFormPasswordFieldModel | AppDynamicFormDateFieldModel | AppDynamicFormCheckboxFieldModel;
 
 export type AppDynamicFormFieldModelBase = {
   name: string;
@@ -18,6 +18,8 @@ export type AppDynamicFormFieldModelBase = {
   requiredMessage?: string;
   value?: string | number | Date | boolean;
   clearable?: boolean;
+  options?: SelectOptionItemType[];
+  editable?: boolean;
 };
 
 export type AppDynamicFormTextFieldModel = {
@@ -41,10 +43,31 @@ export type AppDynamicFormPasswordFieldModel = {
   minPasswordStrengthMessage?: string;
 } & AppDynamicFormTextFieldModel;
 
+export type AppDynamicFormCheckboxFieldModel = {
+  checkboxPosition?: 'left' | 'right' | 'top' | 'bottom';
+  textClickable?: boolean;
+  onPressText?: () => void;
+} & AppDynamicFormFieldModelBase;
+
 export type AppDynamicFormDateFieldModel = {
   maxDate?: Date;
   minDate?: Date;
   pickerType?: 'date' | 'time' | 'datetime' | 'countdown';
+} & AppDynamicFormFieldModelBase;
+
+export type AppDynamicFormSelectBoxFieldModel = {
+  headerTitle?: string;
+  editable?: boolean;
+  placeholder?: string;
+  options?: SelectOptionItemType[];
+  valueProp?: string;
+  displayProp?: string;
+  name?: string;
+  value?: string;
+  label?: string;
+  clearable?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
+  onChange?: (value: string) => void;
 } & AppDynamicFormFieldModelBase;
 
 export type AppDynamicFormProps = {
@@ -54,7 +77,7 @@ export type AppDynamicFormProps = {
   editable?: boolean;
   hideSubmitButton?: boolean;
   fields?: AppDynamicFormFieldModel[];
-
+  watchForm?: (values: any) => void;
   submitButtonText?: string;
   submitButtonIconType?: keyof typeof IconTypes;
   submitButtonIconName?: string;
@@ -62,6 +85,6 @@ export type AppDynamicFormProps = {
   submitButtonIconColor?: ColorValue;
   submitButtonIconStyle?: StyleProp<ViewStyle>;
   submitButtonIconPosition?: AppButtonIconPositionType;
-
+  resetData?: Partial<FormData> | null;
   onSubmit?: (data: object) => void;
 };

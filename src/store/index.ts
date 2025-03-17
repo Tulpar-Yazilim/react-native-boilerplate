@@ -12,12 +12,11 @@ import MMKVStorage from '../utils/storage';
 export {authRedux, settingsRedux};
 
 const rootPersistConfig = {
-  blacklist: [baseApi.reducerPath],
   key: 'root',
+  blacklist: [baseApi.reducerPath, 'settings'],
   storage: MMKVStorage,
-  version: 1,
 };
-
+ 
 const settingsPersistConfig = {
   blacklist: ['appLoader'],
   key: 'settings',

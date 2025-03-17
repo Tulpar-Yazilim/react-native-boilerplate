@@ -3,12 +3,12 @@ import {ActivityIndicator, RefreshControl, ScrollView} from 'react-native';
 import {FlashList} from '@shopify/flash-list';
 
 import {projectColors} from '@/assets';
-import {useThemeColors, useThemeMode} from '@/hooks';
+import {useThemeMode} from '@/hooks';
 
 import AppView from '../AppView';
 import {AppListProps} from './type';
 
-function AppList<T>(props: AppListProps<T>) {
+export function AppList<T>(props: AppListProps<T>) {
   const {
     data,
     renderItem,
@@ -31,7 +31,6 @@ function AppList<T>(props: AppListProps<T>) {
   } = props;
 
   const themeMode = useThemeMode();
-  const colors = useThemeColors();
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
@@ -66,7 +65,7 @@ function AppList<T>(props: AppListProps<T>) {
       )}
     </React.Fragment>
   ) : (
-    <FlashList
+    <FlashList<T>
       data={data ?? []}
       renderItem={renderItem}
       ListFooterComponent={pagination ? renderFooter : null}
@@ -87,5 +86,3 @@ function AppList<T>(props: AppListProps<T>) {
     />
   );
 }
-
-export default memo(AppList);

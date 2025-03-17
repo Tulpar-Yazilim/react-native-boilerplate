@@ -1,5 +1,4 @@
 import React, {memo, useCallback, useEffect, useRef, useState} from 'react';
-import {View} from 'react-native';
 
 import dayjs from 'dayjs';
 
@@ -11,11 +10,13 @@ import AppInput from '../AppInput';
 import {AppInputRefType} from '../AppInput/type';
 
 const AppInputDatePicker = (props: AppInputDatePickerProps) => {
+  const colors = useThemeColors();
+
   const inputRef = useRef<AppInputRefType | null>(null);
 
   const [visible, setVisible] = useState<boolean>(false);
 
-  const colors = useThemeColors();
+  const format = props.format ?? 'DD.MM.YYYY';
 
   const handleOnPress = () => {
     setVisible(true);
@@ -24,7 +25,7 @@ const AppInputDatePicker = (props: AppInputDatePickerProps) => {
   const handleOnConfirm = useCallback((_date: Date) => {
     props.onConfirm?.(_date);
     setVisible(false);
-    inputRef.current?.setValue?.(dayjs(new Date(_date)).format('DD.MM.YYYY'));
+    inputRef.current?.setValue?.(dayjs(new Date(_date)).format(format));
   }, []);
 
   const handleOnCancel = useCallback(() => {
@@ -38,27 +39,36 @@ const AppInputDatePicker = (props: AppInputDatePickerProps) => {
 
   useEffect(() => {
     if (props.value) {
-      inputRef.current?.setValue?.(props.value);
+      inputRef.current?.setValue?.(dayjs(props.value).format(format));
     }
   }, [props.value]);
 
   return (
-    <View style={props.style}>
+    <>
       <AppInput
-        ref={inputRef}
-        onPress={handleOnPress}
-        onClear={handleOnClear}
-        readOnly
-        iconType="material"
-        iconName="calendar-blank-outline"
-        iconPosition="right"
-        iconSize={22}
-        iconColor={colors.black}
-        label="date"
         {...props}
+        ref={inputRef}
+        onPress={props.editable ? handleOnPress : undefined}
+        onPressIcon={props.editable ? handleOnPress : undefined}
+        onClear={props.editable ? handleOnClear : undefined}
+        readOnly
+        iconType={props.iconType ?? 'material'}
+        iconName={props.iconName ?? 'calendar-blank-outline'}
+        iconPosition={props.iconPosition ?? 'right'}
+        iconSize={props.iconSize ?? 16}
+        iconColor={props.iconColor ?? (props.editable ? colors.black : colors.black20)}
+        label={props.label ?? 'date'}
+        value={props.value ? dayjs(props.value).format(format) : ''}
       />
-      <AppDatePicker minimumDate={props.minDate} maximumDate={props.maxDate} visible={visible} onCancel={handleOnCancel} onConfirm={handleOnConfirm} />
-    </View>
+      <AppDatePicker
+        date={props.value ? dayjs(props.value).toDate() : dayjs().toDate()}
+        minimumDate={props.minDate}
+        maximumDate={props.maxDate}
+        visible={visible}
+        onCancel={handleOnCancel}
+        onConfirm={handleOnConfirm}
+      />
+    </>
   );
 };
 

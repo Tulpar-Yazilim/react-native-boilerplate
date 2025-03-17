@@ -16,4 +16,5 @@ export type AppPageProps = {
   backgroundImage?: string;
   backgroundResizeMode?: ImageResizeMode;
   onRefreshData?: () => Promise<void> | void;
+  headerShow?: boolean;
 };

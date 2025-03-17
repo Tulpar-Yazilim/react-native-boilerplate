@@ -10,10 +10,10 @@ import AppView from '../AppView';
 import {AppPageProps} from './type';
 import {useThemeColors} from '@/hooks';
 import {generalStyles} from '@/assets';
-import {heightPixel, tabbarHeight} from '@/helpers';
+import {heightPixel} from '@/helpers';
 
-function AppScreen(props: Readonly<AppPageProps>) {
-  const {children, title, scroll = true, safeArea, canGoBack, keyboardScroll, style, navigationOptions, loading, backgroundImage, backgroundResizeMode, onRefreshData} = props;
+function AppPage(props: Readonly<AppPageProps>) {
+  const {children, title, scroll = true, safeArea, canGoBack, keyboardScroll, style, navigationOptions, loading, backgroundImage, backgroundResizeMode, onRefreshData, headerShow = true} = props;
 
   const colors = useThemeColors();
 
@@ -27,7 +27,6 @@ function AppScreen(props: Readonly<AppPageProps>) {
 
   const screenCommonStyles = {
     padding: heightPixel(16),
-    paddingBottom: heightPixel(tabbarHeight),
     backgroundColor: !backgroundImage && colors.backgroundColor,
     ...generalStyles.flex,
     ...generalStyles.flexGrow,
@@ -36,7 +35,7 @@ function AppScreen(props: Readonly<AppPageProps>) {
 
   return (
     <>
-      <AppHeader title={title} canGoBack={canGoBack} navigationOptions={navigationOptions} />
+      {headerShow && <AppHeader title={title} canGoBack={canGoBack} navigationOptions={navigationOptions} />}
       {loading ? (
         <AppText>loading</AppText>
       ) : (
@@ -48,14 +47,7 @@ function AppScreen(props: Readonly<AppPageProps>) {
                 refreshControl={onRefreshData ? <RefreshControl refreshing={refreshing} onRefresh={() => onRefresh?.()} /> : undefined}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}>
-                <AppView
-                  onPress={() => Keyboard.dismiss()}
-                  style={[
-                    screenCommonStyles,
-                    {
-                      paddingBottom: tabbarHeight,
-                    },
-                  ]}>
+                <AppView onPress={() => Keyboard.dismiss()} style={screenCommonStyles}>
                   <SafeAreaView>{children}</SafeAreaView>
                 </AppView>
               </ScrollView>
@@ -63,15 +55,7 @@ function AppScreen(props: Readonly<AppPageProps>) {
 
             {scroll && !safeArea && (
               <ScrollView style={screenCommonStyles} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                <AppView
-                  flex
-                  style={[
-                    generalStyles.fullMinHeight,
-                    {
-                      paddingBottom: tabbarHeight,
-                    },
-                  ]}
-                  onPress={() => Keyboard.dismiss()}>
+                <AppView flex onPress={() => Keyboard.dismiss()}>
                   {children}
                 </AppView>
               </ScrollView>
@@ -87,23 +71,8 @@ function AppScreen(props: Readonly<AppPageProps>) {
 
             {keyboardScroll && !safeArea && (
               <KeyboardAwareScrollView style={screenCommonStyles} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} scrollEnabled={scroll}>
-                <AppView
-                  flex
-                  style={[
-                    generalStyles.fullMinHeight,
-                    {
-                      paddingBottom: tabbarHeight,
-                    },
-                  ]}
-                  onPress={() => Keyboard.dismiss()}>
-                  <View
-                    style={[
-                      {
-                        paddingBottom: tabbarHeight,
-                      },
-                    ]}>
-                    {children}
-                  </View>
+                <AppView flex onPress={() => Keyboard.dismiss()}>
+                  {children}
                 </AppView>
               </KeyboardAwareScrollView>
             )}
@@ -120,7 +89,7 @@ function AppScreen(props: Readonly<AppPageProps>) {
             )}
 
             {!scroll && !safeArea && !keyboardScroll && (
-              <AppView flex style={screenCommonStyles} onPress={() => Keyboard.dismiss()}>
+              <AppView flex style={screenCommonStyles}>
                 {children}
               </AppView>
             )}
@@ -131,4 +100,4 @@ function AppScreen(props: Readonly<AppPageProps>) {
   );
 }
 
-export default memo(AppScreen);
+export default memo(AppPage);

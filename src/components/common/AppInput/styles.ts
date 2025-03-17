@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: projectColors.grey,
   },
   inputContent: {
-    ...textFont(16, projectColors.black, 'medium'),
+    ...textFont(16, projectColors.black, 'bold'),
     height: heightPixel(180),
     flex: 1,
     paddingHorizontal: 0,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   labelContent: {
     padding: 0,
-    ...textFont(14, projectColors.black50, 'medium'),
+    ...textFont(14, projectColors.black50, 'bold'),
   },
   labelContentFocused: {
     fontWeight: '400',
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 });
 
 export const getInputStyle = (props: AppInputProps): StyleProp<ViewStyle> => {
-  const borderColor = props.error ? projectColors.red : projectColors.grey;
+  const borderColor = props.error ? projectColors.red : projectColors.black20;
   const height = props.multiline ? heightPixel(30 * (props.numberOfLines ?? 1)) : heightPixel(65);
 
   const paddingTop = props.labelType === 'hidden' ? heightPixel(19.5) : heightPixel(28);

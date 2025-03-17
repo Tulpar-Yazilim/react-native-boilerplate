@@ -1,40 +1,58 @@
-import React, {memo, useLayoutEffect} from 'react';
-import {StatusBar} from 'react-native';
+import React, {memo, useCallback, useLayoutEffect} from 'react';
+import {StatusBar, SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import AppIcon from '../AppIcon';
 import {AppHeaderProps} from './type';
-import {i18n} from '@/i18n/i18';
-import {useThemeColors} from '@/hooks';
-import {fonts} from '@/assets';
+import {ArzumSeninleLogo, projectColors, spacing} from '@/assets';
+import AppImage from '../AppImage';
+import AppView from '../AppView';
+import {heightPixel} from '@/helpers';
+import {RootStackNavigationPropsType, routes} from '@/navigations';
 
 const BackButton = ({canGoBack}: AppHeaderProps) => {
   const navigation = useNavigation();
-  return navigation.canGoBack() && canGoBack !== false ? <AppIcon type="feather" name="chevron-left" size={26} onPress={() => navigation.goBack()} /> : null;
+  return navigation.canGoBack() && canGoBack !== false ? (
+    <AppIcon type="feather" name="chevron-left" color="white" size={26} onPress={() => navigation.goBack()} style={[spacing.pt2, spacing.px1]} />
+  ) : (
+    <AppView />
+  );
 };
-const AppHeader = (props: AppHeaderProps) => {
-  const {title, navigationOptions} = props;
 
-  const colors = useThemeColors();
+const MenuButton = () => {
+  const navigation = useNavigation<RootStackNavigationPropsType>();
+
+  const handleOpenMenu = useCallback(() => {
+    navigation.navigate(routes.MENU);
+  }, [navigation]);
+
+  return <AppIcon type="feather" name="menu" iconStyle="solid" color="white" size={26} onPress={handleOpenMenu} style={[spacing.pt2, spacing.pl2, spacing.pr1]} />;
+};
+
+const CustomHeader = (props: AppHeaderProps) => (
+  <>
+    <SafeAreaView style={{backgroundColor: projectColors.primary}} />
+    <AppView row justify="space-between" style={{backgroundColor: projectColors.primary, height: heightPixel(55)}}>
+      <AppView row>
+        <MenuButton />
+        <BackButton {...props} />
+      </AppView>
+      <AppImage url={ArzumSeninleLogo} size={110} resizeMode="contain" />
+    </AppView>
+  </>
+);
+const AppHeader = (props: AppHeaderProps) => {
+  const {navigationOptions} = props;
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerStyle: {
-        backgroundColor: colors.headerBackgroundColor,
-      },
-      ...(title && {...{headerTitle: i18n.t(title)}}),
-      headerTitleStyle: {
-        ...fonts.headerTitle,
-        color: colors.headerColor,
-      },
-      headerTitleAlign: 'center',
-      headerLeft: () => <BackButton {...props} />,
+      header: () => <CustomHeader {...props} />,
       ...navigationOptions,
     });
-  }, [title, navigation, colors, navigationOptions]);
+  }, [navigation, navigationOptions]);
 
-  return <StatusBar backgroundColor={colors.primary} barStyle="light-content" />;
+  return <StatusBar backgroundColor={projectColors.primary} barStyle="light-content" />;
 };
 
 export default memo(AppHeader);

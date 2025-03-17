@@ -1,18 +1,21 @@
 import React, {forwardRef, memo, PropsWithChildren, useCallback, useEffect, useImperativeHandle, useRef, useState} from 'react';
 import {ActivityIndicator, NativeSyntheticEvent, NativeTouchEvent, Pressable, TextInput, TextInputEndEditingEventData, TextInputFocusEventData, TouchableOpacity, View} from 'react-native';
 
+import MaskInput from 'react-native-mask-input';
+
 import {useTranslation} from 'react-i18next';
 import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
 
 import {projectColors} from '@/assets';
 import {heightPixel} from '@/helpers';
 
-import styles, {getInputStyle} from './styles';
-import type {AppInputProps, AppInputRefType} from './type';
+import styles, {getInputStyle} from '../AppInput/styles';
+import type {AppInputProps, AppInputRefType} from '../AppInput/type';
 import AppIcon from '../AppIcon';
+import {AppMaskedInputProps} from './type';
 
-const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((inProps, ref) => {
-  const props = inProps as AppInputProps;
+const AppMaskedInput = forwardRef<AppInputRefType, PropsWithChildren<AppMaskedInputProps>>((inProps, ref) => {
+  const props = inProps as AppMaskedInputProps;
   const {
     labelType = 'animated',
     animationDuration = 150,
@@ -27,7 +30,6 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
   const {t} = useTranslation();
 
   const [labelStatus, setLabelStatus] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showClear, setShowClear] = useState<boolean>(false);
 
   const inputRef = useRef<TextInput | null>(null);
@@ -93,7 +95,7 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
   }));
 
   useEffect(() => {
-    labelAnimate.value = !!valueRef.current || labelStatus;
+    labelAnimate.value = !!valueRef.current || labelStatus || !!props.mask;
     setShowClear((props.clearable ?? false) && !!valueRef.current);
   }, [valueRef.current, labelStatus]);
 
@@ -108,19 +110,19 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
   }, [props.autoFocus]);
 
   useEffect(() => {
-    setValue(props.value ?? props.defaultValue ?? '');
-    setLabelStatus(!!props.value || !!props.defaultValue);
-  }, [props.value, props.defaultValue]);
+    setValue(props.value ?? '');
+    setLabelStatus(!!props.value);
+  }, [props.value]);
 
   const labelStyle = useAnimatedStyle(() => {
     return {
-      marginTop: withTiming(labelAnimate.value ? 12 : 19.5, {
+      marginTop: withTiming(labelAnimate.value || props.mask ? 12 : 19.5, {
         duration: animationDuration,
       }),
-      fontSize: withTiming(labelAnimate.value ? 11 : 14, {
+      fontSize: withTiming(labelAnimate.value || props.mask ? 11 : 14, {
         duration: animationDuration,
       }),
-      lineHeight: withTiming(labelAnimate.value ? 15 : 21, {
+      lineHeight: withTiming(labelAnimate.value || props.mask ? 15 : 21, {
         duration: animationDuration,
       }),
     };
@@ -133,8 +135,8 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
   }, [props.labelStatus]);
 
   const handleOnChangeText = useCallback(
-    (text: string) => {
-      props.onChangeText?.(text);
+    (masked: string, unmasked: string, obfuscated: string) => {
+      props.onChangeText?.(masked, unmasked, obfuscated);
     },
     [props.onChangeText],
   );
@@ -173,8 +175,6 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
     props.onClear?.();
   };
 
-  const handleOnPressPassword = () => setShowPassword(!showPassword);
-
   const renderLabel = (
     <View pointerEvents={'none'} style={[styles.labelContainer, props.labelContainerStyle]}>
       <Animated.Text style={[styles.labelContent, labelStatus && styles.labelContentFocused, labelType === 'animated' ? labelStyle : styles.blockLabel, props.labelStyle]}>
@@ -185,7 +185,7 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
 
   const renderEraseIcon = (
     <TouchableOpacity onPress={handleClearValue} style={[styles.clearIconButton, labelType === 'hidden' && styles.iconContainerBlock]}>
-      <AppIcon name="x" color={iconColor} size={iconSize} />
+      <AppIcon type="feather" name="close" color={iconColor} size={iconSize} />
     </TouchableOpacity>
   );
 
@@ -193,13 +193,7 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
     <TouchableOpacity
       onPress={props.onPressIcon}
       style={[styles.iconContainer, iconPosition === 'left' && styles.iconContainerLeft, labelType === 'hidden' && styles.iconContainerBlock, props.iconContainerStyle]}>
-      <AppIcon type={props.iconType} name={props.iconName!} color={iconColor} size={iconSize} />
-    </TouchableOpacity>
-  );
-
-  const renderPasswordIcon = (
-    <TouchableOpacity onPress={handleOnPressPassword} style={[styles.iconContainer, labelType === 'hidden' && styles.iconContainerBlock, props.iconContainerStyle]}>
-      <AppIcon name={showPassword ? 'eye-off' : 'eye'} color={iconColor} size={iconSize} />
+      <AppIcon type={props.iconType!} name={props.iconName!} color={iconColor} size={iconSize} />
     </TouchableOpacity>
   );
 
@@ -207,26 +201,25 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
 
   return (
     <>
-      <Pressable onPress={handleOnPress} style={[getInputStyle(props), props.loading && styles.inputContainerDisable, props.style]}>
+      <Pressable onPress={handleOnPress} style={[getInputStyle(props as AppInputProps), props.loading && styles.inputContainerDisable, props.style]}>
         {labelType !== 'hidden' && props.label && renderLabel}
         {props.iconName && iconPosition === 'left' && renderIcon}
-        <TextInput
+        <MaskInput
           {...props}
           ref={inputRef}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
           onEndEditing={handleOnEndEditing}
           onChangeText={handleOnChangeText}
-          placeholder={labelType !== 'animated' ? props.placeholder : undefined}
           style={[styles.inputContent, props.style]}
           cursorColor={cursorColor}
           textAlignVertical={props.multiline ? 'top' : 'center'}
           editable={editable && !props.loading}
           secureTextEntry={props.secureTextEntry}
           keyboardType={props.keyboardType}
+          mask={props.mask}
         />
         {props.iconName && iconPosition === 'right' && !props.loading && renderIcon}
-        {!props.iconName && props.textFormat === 'password' && renderPasswordIcon}
         {!props.loading && props.clearable && showClear && renderEraseIcon}
         {props.loading && renderSpinner}
       </Pressable>
@@ -235,4 +228,4 @@ const AppInput = forwardRef<AppInputRefType, PropsWithChildren<AppInputProps>>((
   );
 });
 
-export default memo(AppInput);
+export default memo(AppMaskedInput);

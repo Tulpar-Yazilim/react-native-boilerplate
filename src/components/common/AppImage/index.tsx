@@ -9,7 +9,7 @@ import {projectColors} from '@/assets';
 const Image = createImageProgress(FastImage);
 
 const AppImage = (props: AppImageProps) => {
-  const {url, size, width = 50, height = 50, resizeMode = 'cover', indicatorColor = projectColors.grey, style, ...otherProps} = props;
+  const {url, size, width = 50, height = 50, resizeMode = 'cover', indicatorColor = projectColors.black, style, ...otherProps} = props;
   return (
     <Image
       source={typeof url === 'string' ? {uri: url, priority: FastImage.priority.high} : url}

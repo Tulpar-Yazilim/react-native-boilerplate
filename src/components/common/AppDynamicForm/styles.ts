@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   formContainer: {
     ...generalStyles.flex,
     ...spacing.p1,
-    ...borderBox(projectColors.black40, 10, 1),
   },
   formTitle: {
     ...textFont(16, projectColors.textBlack, 'bold'),

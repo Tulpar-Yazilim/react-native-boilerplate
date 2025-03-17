@@ -7,35 +7,42 @@ import styles, {getCheckboxTextContainerStyle, getCheckboxTextStyle} from './sty
 import type {AppCheckboxProps} from './type';
 import AppIcon from '../AppIcon';
 import AppText from '../AppText';
+import AppView from '../AppView';
 
 const AppCheckbox = (props: AppCheckboxProps) => {
+  const {checkboxPosition = 'left', ...otherProps} = props;
+
   const handlePressCheckbox = () => {
-    props.onChanged?.(!props.checked);
+    otherProps.onChanged?.(!otherProps.checked);
   };
 
   const renderCheckbox = (
     <TouchableOpacity
-      onPress={handlePressCheckbox}
-      disabled={props.disabled}
-      style={[styles.container, props.checked && styles.checkedContainer, props.disabled && styles.disabledContainer, props.error && styles.hasErrorContainer, props.style]}>
-      {props.checked && <AppIcon type={props.iconType} color={props.disabled ? projectColors.grey : projectColors.white} size={8} />}
+      onPress={otherProps.textClickable ? otherProps.onPressText : handlePressCheckbox}
+      disabled={otherProps.disabled}
+      style={[styles.container, otherProps.checked && styles.checkedContainer, otherProps.disabled && styles.disabledContainer, otherProps.error && styles.hasErrorContainer, otherProps.style]}>
+      {otherProps.checked && (
+        <AppView style={styles.checkedIconContainer}>
+          <AppIcon name="check" color={otherProps.disabled ? projectColors.grey : projectColors.white} size={20} />
+        </AppView>
+      )}
     </TouchableOpacity>
   );
 
-  const renderText = <AppText style={[getCheckboxTextStyle(props), props.textStyle, props.disabled && styles.disabledText]}>{props.text}</AppText>;
+  const renderText = <AppText style={[getCheckboxTextStyle(props), otherProps.textStyle, otherProps.disabled && styles.disabledText]}>{otherProps.text}</AppText>;
 
   const renderContent = (
-    <View pointerEvents={props.textClickable ? 'auto' : 'none'} style={getCheckboxTextContainerStyle(props)}>
-      {(props.checkboxPosition === 'left' || props.checkboxPosition === 'top') && renderCheckbox}
-      {props.textClickable ? <TouchableOpacity onPress={props.onPressText}>{renderText}</TouchableOpacity> : renderText}
-      {(props.checkboxPosition === 'right' || props.checkboxPosition === 'bottom') && renderCheckbox}
+    <View pointerEvents={otherProps.textClickable ? 'auto' : 'none'} style={getCheckboxTextContainerStyle(props)}>
+      {(checkboxPosition === 'left' || checkboxPosition === 'top') && renderCheckbox}
+      {otherProps.textClickable ? <TouchableOpacity onPress={otherProps.onPressText}>{renderText}</TouchableOpacity> : renderText}
+      {(checkboxPosition === 'right' || checkboxPosition === 'bottom') && renderCheckbox}
     </View>
   );
 
   return props.textClickable ? (
-    <View style={[styles.container, props.style]}>{renderContent}</View>
+    <View style={otherProps.style}>{renderContent}</View>
   ) : (
-    <TouchableOpacity onPress={handlePressCheckbox} style={[styles.container, props.style]} disabled={props.disabled}>
+    <TouchableOpacity onPress={handlePressCheckbox} style={otherProps.style} disabled={otherProps.disabled}>
       {renderContent}
     </TouchableOpacity>
   );

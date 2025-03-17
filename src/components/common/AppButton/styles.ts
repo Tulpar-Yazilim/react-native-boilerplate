@@ -71,8 +71,8 @@ export const createCustomButtonStyle = (props: AppButtonProps): ViewStyle => {
 };
 
 export const createCustomTextStyle = (props: AppButtonProps): TextStyle => {
-  const fontType = props.height === 'large' ? 'bold' : 'regular';
-  let textColor = props.textColor ? props.textColor : projectColors.white;
+  const fontType = 'bold';
+  let textColor = projectColors.white;
   let textDecorationLine: TextDecorationLine = 'none';
   if (props.type === 'link') {
     textColor = projectColors.primary;
@@ -83,10 +83,10 @@ export const createCustomTextStyle = (props: AppButtonProps): TextStyle => {
   if (props.disabled) {
     textColor = projectColors.black50;
   }
-  const fontSize = props.height === 'large' ? 16 : 14;
+  const fontSize = props.height === 'large' ? 20 : 16;
 
   return {
-    ...textFont(fontSize, textColor, fontType),
+    ...textFont(fontSize, props.textColor ? props.textColor : textColor, fontType),
     opacity: props.disabled ? 0.3 : 1,
     textDecorationLine,
   };

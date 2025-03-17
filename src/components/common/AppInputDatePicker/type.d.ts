@@ -5,4 +5,5 @@ export type AppInputDatePickerProps = {
   onCancel?: () => void;
   minDate?: Date;
   maxDate?: Date;
+  format?: string;
 } & AppInputProps;

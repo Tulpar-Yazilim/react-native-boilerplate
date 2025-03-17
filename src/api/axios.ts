@@ -22,6 +22,8 @@ axiosAgent.interceptors.request.use(
     if (cancelRequest) return Promise.reject(new Error('Request Cancelled'));
 
     const token = store.getState()?.auth?.token;
+    const language = store.getState()?.settings?.language;
+    config.headers['Accept-Language'] = language;
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
