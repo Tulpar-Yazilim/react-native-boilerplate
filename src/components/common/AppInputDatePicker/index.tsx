@@ -10,6 +10,8 @@ import AppInput from '../AppInput';
 import {AppInputRefType} from '../AppInput/type';
 
 const AppInputDatePicker = (props: AppInputDatePickerProps) => {
+  const {editable = true} = props;
+
   const colors = useThemeColors();
 
   const inputRef = useRef<AppInputRefType | null>(null);
@@ -48,15 +50,15 @@ const AppInputDatePicker = (props: AppInputDatePickerProps) => {
       <AppInput
         {...props}
         ref={inputRef}
-        onPress={props.editable ? handleOnPress : undefined}
-        onPressIcon={props.editable ? handleOnPress : undefined}
-        onClear={props.editable ? handleOnClear : undefined}
+        onPress={editable ? handleOnPress : undefined}
+        onPressIcon={editable ? handleOnPress : undefined}
+        onClear={editable ? handleOnClear : undefined}
         readOnly
         iconType={props.iconType ?? 'material'}
         iconName={props.iconName ?? 'calendar-blank-outline'}
         iconPosition={props.iconPosition ?? 'right'}
         iconSize={props.iconSize ?? 16}
-        iconColor={props.iconColor ?? (props.editable ? colors.black : colors.black20)}
+        iconColor={props.iconColor ?? (editable ? colors.black : colors.black20)}
         label={props.label ?? 'date'}
         value={props.value ? dayjs(props.value).format(format) : ''}
       />

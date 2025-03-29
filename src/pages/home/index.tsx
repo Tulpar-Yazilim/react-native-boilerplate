@@ -9,10 +9,13 @@ import {useAppDispatch, useAppSelector} from '@/hooks';
 import {HomeStackNavigationPropsType} from '@/navigations/stacks';
 import {settingsRedux} from '@/store';
 import {showToast} from '@/helpers';
+import {styles} from './styles';
 
 const HeaderRight = ({language}: {language: string}) => (
   <AppView>
-    <AppText params={{language}}>language</AppText>
+    <AppText params={{language}} style={styles.headerRight}>
+      language
+    </AppText>
   </AppView>
 );
 
@@ -43,7 +46,7 @@ export function HomeScreen() {
         <View style={[spacing.pt2]}>
           <AppInput label="Ad" />
         </View>
-        <AppInputDatePicker style={[spacing.pt2]} />
+        <AppInputDatePicker style={[spacing.mt2]} />
       </View>
 
       <View style={[generalStyles.flex, spacing.pt2, spacing.pb2]}>
